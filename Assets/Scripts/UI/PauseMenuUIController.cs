@@ -10,8 +10,9 @@ public class PauseMenuUIController : AbstractUIController
     public string MainMenuName;
     private SceneSaveManager _saveManager;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _saveManager = FindObjectOfType<SceneSaveManager>();
     }
 
@@ -34,6 +35,22 @@ public class PauseMenuUIController : AbstractUIController
 
     private void SaveClicked()
     {
-        _saveManager.Save();
+        _saveManager.Persist();
+        GlobalSaveManager.Save();
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (Active)
+            {
+                Manager.Pop();
+            }
+            else if (!UIManager.HasInputFocus)
+            {
+                Manager.Push(this);
+            }
+        }
     }
 }

@@ -47,7 +47,7 @@ public class InventoryListUIController : AbstractUIController
 
     private void Update()
     {
-        if (!Active && Input.GetButtonDown("Inventory"))
+        if (!UIManager.HasInputFocus && Input.GetButtonDown("Inventory"))
         {
             Manager.Push(this);
         }

@@ -1,8 +1,10 @@
 using System.Xml;
+using System.Xml.Serialization;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public class DepositInteraction : AbstractInteraction
+public class DepositInteraction : AbstractInteraction, IPersistentObject
 {
     private bool _isStored;
     public InventoryItemStack Requirement;
@@ -43,23 +45,26 @@ public class DepositInteraction : AbstractInteraction
             }
         }
     }
-    
-    public override void ResetSaveState()
+
+    #region Serialization
+
+    [Header("Serialization")] [SerializeField]
+    private string _SaveId;
+
+    public string SaveID => _SaveId;
+
+    public void LoadSaveState(AbstractSaveState state)
     {
-        _isStored = false;
+        _isStored = (state as SaveState)?.IsStored ?? false;
     }
 
-    public override void WriteSaveState(XmlWriter writer)
+    public AbstractSaveState GetSaveState() => new SaveState {IsStored = _isStored};
+
+    [XmlType("DepositInteraction")]
+    public class SaveState : AbstractSaveState
     {
-        writer.WriteStartElement("IsStored");
-        writer.WriteValue(_isStored);
-        writer.WriteEndElement();
+        public bool IsStored;
     }
 
-    public override void ReadSaveState(XmlReader reader)
-    {
-        reader.ReadStartElement("IsStored");
-        _isStored = reader.ReadContentAsBoolean();
-        reader.ReadEndElement();
-    }
+    #endregion
 }

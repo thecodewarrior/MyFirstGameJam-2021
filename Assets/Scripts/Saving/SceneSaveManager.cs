@@ -7,63 +7,54 @@ using UnityEngine;
 
 public class SceneSaveManager : MonoBehaviour
 {
-    private Dictionary<string, ISavable> _idMap;
-    private string savePath;
-
-    public void Register(ISavable savable)
-    {
-        var id = savable.SaveID;
-        if(_idMap.ContainsKey(id)) 
-            throw new ArgumentException($"Duplicate save ID '{id}'");
-        _idMap[id] = savable;
-    }
-
     private void Start()
     {
-        savePath = GlobalSaveManager.CurrentSaveFilePath();
-        if(savePath != null)
-            Load();
+        Load();
     }
 
-    public void Save()
+    private List<IPersistentObject> FindPersistentObjects()
     {
-        var writer = XmlWriter.Create(savePath);
-        writer.WriteStartDocument();
-        writer.WriteStartElement("SaveData");
-        foreach(var entry in _idMap)
+        // https://stackoverflow.com/a/65495834/1541907
+        var persistentObjects = new List<IPersistentObject>();
+        var rootObjects = gameObject.scene.GetRootGameObjects();
+        foreach (var root in rootObjects)
         {
-            writer.WriteStartElement(entry.Value.GetType().Name);
-            writer.WriteAttributeString("id", entry.Key);
-            entry.Value.WriteSaveState(writer);
-            writer.WriteEndElement();
+            // Pass in "true" to include inactive and disabled children
+            persistentObjects.AddRange(root.GetComponentsInChildren<IPersistentObject>(true));
         }
-        writer.WriteEndElement();
-        writer.WriteEndDocument();
+
+        return persistentObjects;
     }
-    
-    public void Load()
+
+    /**
+     * <summary>Persist data into the global save manager. Note, this does <i>not</i> save the file. To do that, call
+     * the Save method on the GlobalSaveManager</summary>
+     */
+    public void Persist()
     {
-        var reader = XmlReader.Create(savePath);
-        var lineInfoReader = (IXmlLineInfo) reader;
-        reader.ReadStartElement("SaveData");
-        
-        foreach (var savable in _idMap.Values)
+        foreach (var persistentObject in FindPersistentObjects())
         {
-            savable.ResetSaveState();
-        }
-        
-        while (reader.IsStartElement())
-        {
-            var location = $"{lineInfoReader.LineNumber}:{lineInfoReader.LinePosition}";
-            reader.ReadStartElement();
-            var id = reader.GetAttribute("id");
+            var id = persistentObject.SaveID;
             if (id == null)
             {
-                throw new Exception($"Save entry missing id attribute at {location}");
+                Debug.Log($"Object has null id: {persistentObject}");
             }
-            _idMap[id].ReadSaveState(reader);
-            reader.ReadEndElement();
+            else
+            {
+                GlobalSaveManager.Data.SetState(id, persistentObject.GetSaveState());
+            }
         }
-        reader.ReadEndElement();
+    }
+
+    /**
+     * <summary>Load data from the global save manager. Note, this does <i>not</i> load the file. To do that, call the
+     * Load method on the GlobalSaveManager</summary>
+     */
+    public void Load()
+    {
+        foreach (var persistentObject in FindPersistentObjects())
+        {
+            persistentObject.LoadSaveState(GlobalSaveManager.Data.GetState(persistentObject.SaveID));
+        }
     }
 }

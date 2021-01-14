@@ -3,28 +3,12 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class AbstractInteraction : MonoBehaviour, IInteraction, ISavable
+public abstract class AbstractInteraction : MonoBehaviour, IInteraction
 {
-    [SerializeField] private string _SaveID;
     public VisualTreeAsset Popup;
 
     public abstract void PerformInteraction(VisualElement element, PlayerInteractionManager manager);
     protected abstract void BindElement(VisualElement element, PlayerInteractionManager manager);
-    
-    // ISavable
-    public string SaveID => _SaveID;
-    public abstract void ResetSaveState();
-    public abstract void WriteSaveState(XmlWriter writer);
-    public abstract void ReadSaveState(XmlReader reader);
-
-    private void Start()
-    {
-        if (_SaveID != "")
-        {
-            var saveManager = FindObjectOfType<SceneSaveManager>();
-            saveManager.Register(this);
-        }
-    }
 
     public VisualElement CreateElement(PlayerInteractionManager manager)
     {

@@ -10,7 +10,7 @@ public abstract class AbstractUIController : MonoBehaviour
     protected UIManager Manager;
     protected VisualElement Root;
 
-    private void Start()
+    protected virtual void Start()
     {
         Manager = FindObjectOfType<UIManager>();
     }

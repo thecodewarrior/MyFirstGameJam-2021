@@ -1,13 +1,14 @@
 using System.Xml;
 using System.Xml.Serialization;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public class PickupInteraction : AbstractInteraction
+public class PickupInteraction : AbstractInteraction, IPersistentObject
 {
     private bool _isTaken;
     public InventoryItemStack Contents;
-    
+
     public override void PerformInteraction(VisualElement element, PlayerInteractionManager manager)
     {
         if (_isTaken)
@@ -24,22 +25,25 @@ public class PickupInteraction : AbstractInteraction
         countElement.text = _isTaken ? "0" : $"{Contents.Count}";
     }
 
-    public override void ResetSaveState()
+    #region Serialization
+
+    [Header("Serialization")] [SerializeField]
+    private string _SaveId;
+
+    public string SaveID => _SaveId;
+
+    public void LoadSaveState(AbstractSaveState state)
     {
-        _isTaken = false;
+        _isTaken = (state as SaveState)?.IsTaken ?? false;
     }
 
-    public override void WriteSaveState(XmlWriter writer)
+    public AbstractSaveState GetSaveState() => new SaveState {IsTaken = _isTaken};
+
+    [XmlType("PickupInteraction")]
+    public class SaveState : AbstractSaveState
     {
-        writer.WriteStartElement("IsTaken");
-        writer.WriteValue(_isTaken);
-        writer.WriteEndElement();
+        public bool IsTaken;
     }
 
-    public override void ReadSaveState(XmlReader reader)
-    {
-        reader.ReadStartElement("IsTaken");
-        _isTaken = reader.ReadContentAsBoolean();
-        reader.ReadEndElement();
-    }
+    #endregion
 }

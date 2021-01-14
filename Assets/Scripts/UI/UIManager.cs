@@ -5,8 +5,11 @@ using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
+    public static bool HasInputFocus { get; private set; }
+    
     [SerializeField] private AbstractUIController ActiveController;
     private AbstractUIController ActiveDialogController;
+    
     [SerializeField] private UIDocument MainDocument;
     [SerializeField] private UIDocument DialogDocument;
     
@@ -66,5 +69,11 @@ public class UIManager : MonoBehaviour
         }
 
         ActiveDialogController = controller;
+    }
+
+    // run in late update so 
+    private void LateUpdate()
+    {
+        HasInputFocus = ActiveController != null || ActiveDialogController != null;
     }
 }

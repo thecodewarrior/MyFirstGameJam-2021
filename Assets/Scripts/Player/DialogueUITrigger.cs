@@ -47,7 +47,7 @@ public class DialogueUITrigger : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (canBeTriggered && !automaticTrigger && !_dialogueController.Active)
+            if (canBeTriggered && !automaticTrigger && !UIManager.HasInputFocus)
             {
                 TriggerDialogue();
                 MakePlayerFaceNPC();

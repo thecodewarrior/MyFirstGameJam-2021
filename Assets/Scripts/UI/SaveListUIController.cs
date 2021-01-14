@@ -11,7 +11,7 @@ public class SaveListUIController : AbstractUIController
     public VisualTreeAsset ElementTemplate;
     public string GameSceneName;
 
-    private List<string> _saveNames;
+    private List<string> _saveNames = new List<string>();
 
     protected override void Bind()
     {

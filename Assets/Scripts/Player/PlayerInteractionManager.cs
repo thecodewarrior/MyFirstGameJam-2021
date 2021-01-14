@@ -40,7 +40,7 @@ public class PlayerInteractionManager : MonoBehaviour
 
     public void Update()
     {
-        if (_currentInteraction != null && Input.GetButton("Fire1"))
+        if (_currentInteraction != null && Input.GetButton("Fire1") && !UIManager.HasInputFocus)
         {
             _currentInteraction.PerformInteraction(_currentInteractionElement, this);
         }

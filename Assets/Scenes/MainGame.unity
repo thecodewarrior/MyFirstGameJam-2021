@@ -626,6 +626,7 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
+  currentMusicPlaying: 
 --- !u!4 &691668103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 591315399217211330, guid: a5b28cc7c008640ac94711cdd28ff27d, type: 3}
@@ -790,8 +791,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811fe6a74defb4c8ba56dc3dc2eb7e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStartPoint: {fileID: 0}
   levelMusic: demo_3
   playLevelMusicOnStart: 1
+  fadeTime: 0
+  startPoints: []
 --- !u!1 &832834578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1078,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2073371483}
     m_Modifications:
+    - target: {fileID: 3139776178477584124, guid: 8f948f989641f41428c1e24eaac5eeb8, type: 3}
+      propertyPath: _SaveId
+      value: wolf_hair_dropoff
+      objectReference: {fileID: 0}
     - target: {fileID: 3139776178477584124, guid: 8f948f989641f41428c1e24eaac5eeb8, type: 3}
       propertyPath: Requirement.Item
       value: 
@@ -1869,6 +1877,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2073371483}
     m_Modifications:
+    - target: {fileID: 3817290202345440874, guid: 7867624e45e724700956db6bdbf915d7, type: 3}
+      propertyPath: _SaveId
+      value: wolf_hair_pickup
+      objectReference: {fileID: 0}
     - target: {fileID: 3817290202345440874, guid: 7867624e45e724700956db6bdbf915d7, type: 3}
       propertyPath: Contents.Item
       value: 

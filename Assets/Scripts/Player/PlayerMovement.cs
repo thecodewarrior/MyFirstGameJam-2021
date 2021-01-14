@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,42 +27,41 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-        if (Input.GetButtonDown("Jump"))
+        if (!UIManager.HasInputFocus)
         {
-            isJumping = true;
-        }
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                isJumping = true;
+            }
 
 
-        if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            isCrouching = true;
+            if (Input.GetAxisRaw("Vertical") < 0)
+            {
+                isCrouching = true;
+            }
+            else
+            {
+                isCrouching = false;
+            }
         }
-        else
-        {
-            isCrouching = false;
-        }
-
 
         SetAnimation();
-        
-
-        
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
-
         if (!isFrozen)
         {
             //Move our character
             controller.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
-        } else
+        }
+        else
         {
             controller.FreezePlayerMovement();
         }
-        
+
         isJumping = false;
         CheckIfFalling();
         previousPosition = transform.position;
@@ -73,7 +72,8 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y < previousPosition.y)
         {
             isFalling = true;
-        } else
+        }
+        else
         {
             isFalling = false;
         }
@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetAnimation()
     {
-
         animator.SetBool("grounded", controller.Grounded);
         animator.SetBool("isCrouching", isCrouching);
         animator.SetBool("isFalling", isFalling);
@@ -92,8 +91,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("horizontalAxis", Mathf.Abs(0f));
             animator.SetBool("isCrouching", false);
         }
-
-        
     }
 
     public void FreezePlayer()
