@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="Theme.uss" />
+    <ui:VisualElement style="flex-direction: row; align-items: center; height: 26px;">
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="save_name" style="font-size: 16px; flex-grow: 1; -unity-font-style: bold;" />
+        <ui:Button text="Load" display-tooltip-when-elided="true" name="load_button" style="font-size: 16px;" />
+        <ui:Button text="Delete" display-tooltip-when-elided="true" name="delete_button" style="font-size: 16px;" />
+    </ui:VisualElement>
+</ui:UXML>

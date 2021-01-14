@@ -1,0 +1,11 @@
+* {
+    color: rgb(210, 210, 210);
+}
+
+Button {
+    background-color: rgb(137, 137, 137);
+    border-left-color: rgb(164, 164, 164);
+    border-right-color: rgb(164, 164, 164);
+    border-top-color: rgb(164, 164, 164);
+    border-bottom-color: rgb(125, 125, 125);
+}

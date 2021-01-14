@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="Theme.uss" />
+    <ui:VisualElement style="height: 100%; width: 100%; justify-content: center; flex-direction: column; align-items: center;">
+        <ui:Button text="Add Holy Water" display-tooltip-when-elided="true" name="add_button" style="background-color: rgba(113, 113, 113, 255); border-left-color: rgb(101, 101, 101); border-right-color: rgb(101, 101, 101); border-top-color: rgb(101, 101, 101); border-bottom-color: rgb(53, 53, 53);" />
+        <ui:VisualElement style="background-image: url(&apos;/Assets/Textures/UI/Inventory Background.png&apos;); width: 300px; height: 300px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+            <ui:ListView focusable="true" name="item_list" style="flex-grow: 1; color: rgb(210, 210, 210);" />
+        </ui:VisualElement>
+        <ui:Button text="Remove Holy Water" display-tooltip-when-elided="true" name="remove_button" style="background-color: rgb(113, 113, 113); border-left-color: rgb(101, 101, 101); border-right-color: rgb(101, 101, 101); border-top-color: rgb(101, 101, 101); border-bottom-color: rgb(53, 53, 53);" />
+    </ui:VisualElement>
+</ui:UXML>

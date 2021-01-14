@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="Theme.uss" />
+    <ui:VisualElement style="align-items: center; justify-content: center; flex-grow: 1; background-color: rgb(58, 58, 58);">
+        <ui:VisualElement style="width: 300px;">
+            <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume" style="font-size: 18px; margin-bottom: 6px;" />
+            <ui:Button text="Save" display-tooltip-when-elided="true" name="save" style="font-size: 18px; margin-bottom: 6px;" />
+            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main_menu" style="font-size: 18px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

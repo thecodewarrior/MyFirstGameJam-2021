@@ -1,0 +1,7 @@
+.item-count-requirement-unmet {
+    color: rgb(255, 61, 61);
+}
+
+.item-count-requirement-met {
+    color: rgb(21, 255, 40);
+}
