@@ -1,3 +1,5 @@
+using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class InventoryListUIController : AbstractUIController
@@ -41,5 +43,18 @@ public class InventoryListUIController : AbstractUIController
     private void OnDisable()
     {
         Inventory.OnChange -= OnInventoryChange;
+    }
+
+    private void Update()
+    {
+        if (!Active && Input.GetButtonDown("Inventory"))
+        {
+            Manager.Push(this);
+        }
+
+        if (Active && Input.GetButtonDown("Cancel"))
+        {
+            Manager.Pop();
+        }
     }
 }

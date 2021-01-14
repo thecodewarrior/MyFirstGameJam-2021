@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
 
 	public Sound[] sounds;
 
+	public string currentMusicPlaying;
+
 	void Awake()
 	{
 		if (instance != null)
@@ -21,7 +23,7 @@ public class SoundManager : MonoBehaviour
 		else
 		{
 			instance = this;
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(this.gameObject);
 		}
 
 		foreach (Sound s in sounds)
@@ -43,6 +45,18 @@ public class SoundManager : MonoBehaviour
 			return;
 		}
 
+		s.source.Play();
+	}
+
+	public void PlayMusic(string musicName)
+	{
+		Sound s = Array.Find(sounds, item => item.name == musicName);
+		if (s == null)
+		{
+			print("Music: " + name + " not found!");
+			return;
+		}
+		currentMusicPlaying = musicName;
 		s.source.Play();
 	}
 

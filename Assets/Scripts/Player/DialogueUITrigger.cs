@@ -9,7 +9,7 @@ public class DialogueUITrigger : MonoBehaviour
     protected bool canBeTriggered;
     protected PlayerMovement playerMovement;
 
-    public GameObject NPC;
+    public GameObject FocusPoint;
     public bool automaticTrigger;
     public List<Dialogue> dialogueLines = new List<Dialogue>();
 
@@ -47,7 +47,7 @@ public class DialogueUITrigger : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (canBeTriggered && !automaticTrigger && !_dialogueController.Active )
+            if (canBeTriggered && !automaticTrigger && !_dialogueController.Active)
             {
                 TriggerDialogue();
                 MakePlayerFaceNPC();
@@ -64,7 +64,7 @@ public class DialogueUITrigger : MonoBehaviour
 
     public void MakePlayerFaceNPC()
     {
-        if (NPC.transform.position.x > playerMovement.gameObject.transform.position.x)
+        if (FocusPoint.transform.position.x > playerMovement.gameObject.transform.position.x)
         {
             playerMovement.MakePlayerFaceRight();
         } else

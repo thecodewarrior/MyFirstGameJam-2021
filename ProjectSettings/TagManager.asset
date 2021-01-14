@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Wolf
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Ground
   - GroundCheck
   - Dialogue
-  - 
+  - Wolf
   - 
   - 
   - 
@@ -45,12 +46,15 @@ TagManager:
   - name: Background
     uniqueID: 1537679453
     locked: 0
+  - name: Midground
+    uniqueID: 1255815167
+    locked: 0
   - name: Player
     uniqueID: 587412757
     locked: 0
-  - name: Enemy
-    uniqueID: 1255815167
-    locked: 0
   - name: Foreground
     uniqueID: 3178927999
+    locked: 0
+  - name: Wolf
+    uniqueID: 2358351391
     locked: 0

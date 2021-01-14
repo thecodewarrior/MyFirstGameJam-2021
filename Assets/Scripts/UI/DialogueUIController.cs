@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class DialogueUIController : AbstractUIController
@@ -11,7 +10,6 @@ public class DialogueUIController : AbstractUIController
     protected int currentDialogueIndex;
     protected bool isTyping;
     protected PlayerMovement playerMovement;
-    protected bool canInteract;
     [Header("Settings")]
     public float typeSpeed;
 
@@ -38,7 +36,7 @@ public class DialogueUIController : AbstractUIController
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && canInteract)
+        if (Active && Input.GetButtonDown("Fire1"))
         {
             if (isTyping)
             {   
@@ -60,8 +58,6 @@ public class DialogueUIController : AbstractUIController
             case "wolf_normal":
                 _profile.style.backgroundImage = new StyleBackground(wolfNormalSprite);
                 break;
-            default:
-                break;
         }
     }
 
@@ -72,8 +68,7 @@ public class DialogueUIController : AbstractUIController
         currentDialogueIndex = 0;
         SwitchSprite(currentDialogueGroup[0].spriteName);
         _dialogueText.text = "";
-        Invoke("AllowInteraction", .6f);
-        Invoke("DisplayNextSentence", .5f);
+        DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
@@ -96,12 +91,6 @@ public class DialogueUIController : AbstractUIController
     {
         if(Active)
             Manager.Pop();
-        PreventInteraction();
-        Invoke("DeactivateDialogueAndAllowPlayerMovement", .5f);
-    }
-
-    public void DeactivateDialogueAndAllowPlayerMovement()
-    {
         playerMovement.UnFreezePlayer();
     }
 
@@ -129,15 +118,5 @@ public class DialogueUIController : AbstractUIController
         StopAllCoroutines();
         isTyping = false;
         _dialogueText.text = currentDialogue.sentence;
-    }
-
-    public void AllowInteraction()
-    {
-        canInteract = true;
-    }
-
-    public void PreventInteraction()
-    {
-        canInteract = false;
     }
 }
