@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPointName: 
+  startingHealth: 3
+  currentHealth: 0

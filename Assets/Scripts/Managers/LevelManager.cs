@@ -89,4 +89,15 @@ public class LevelManager : MonoBehaviour
     {
         playerMovement.transform.position = currentStartPoint.gameObject.transform.position;
     }
+
+    public void ReduceHealth()
+    {
+
+    }
+
+    public void KillPlayer()
+    {
+
+    }
+
 }

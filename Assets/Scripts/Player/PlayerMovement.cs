@@ -7,10 +7,11 @@ public class PlayerMovement : MonoBehaviour
     protected CharacterController2D controller;
     protected bool isJumping = false;
     protected bool isHiding = true;
-    public bool isCrouching { get; private set; } = false;
-    public bool isFrozen { get; private set; } = false;
     protected Animator animator;
     protected Vector3 previousPosition;
+
+    public bool isCrouching { get; private set; } = false;
+    public bool isFrozen { get; private set; } = false;
     public bool isFalling { get; private set; } = false;
     public float runSpeed = 40f;
 

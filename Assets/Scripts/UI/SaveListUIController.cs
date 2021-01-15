@@ -51,6 +51,7 @@ public class SaveListUIController : AbstractUIController
     private void OpenSave(int index)
     {
         GlobalSaveManager.CurrentSaveName = _saveNames[index];
+        GlobalSaveManager.ReadFromFile();
         SceneManager.LoadScene(GameSceneName);
     }
 
@@ -72,7 +73,8 @@ public class SaveListUIController : AbstractUIController
     {
         GlobalSaveManager.CreateSaveDirectory();
         _saveNames.Clear();
-        _saveNames.AddRange(Directory.GetFiles(GlobalSaveManager.SaveDirectory, "*.xml")
+        var files = Directory.GetFiles(GlobalSaveManager.SaveDirectory, "*.xml");
+        _saveNames.AddRange(files
             .Select(Path.GetFileName)
             .Select((fileName) => fileName.Substring(0, fileName.Length - 4))
         );

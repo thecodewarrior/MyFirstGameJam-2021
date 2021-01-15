@@ -9,28 +9,29 @@ public class SaveData
     [XmlArray("States")]
     [XmlArrayItem(typeof(DepositInteraction.SaveState))]
     [XmlArrayItem(typeof(PickupInteraction.SaveState))]
-    public List<AbstractSaveState> XmlStates
+    public List<AbstractSaveState> XmlStates;
+
+
+    public void DidRead()
     {
-        get
+        _states.Clear();
+        foreach (var state in XmlStates)
         {
-            var xmlStates = from state in _states.Values
-                orderby state.Id
-                select state;
-                
-            return xmlStates.ToList();
-        }
-        set
-        {
-            _states.Clear();
-            foreach (var state in value)
-            {
-                _states[state.Id] = state;
-            }
+            _states[state.Id] = state;
         }
     }
 
+    public void WillWrite()
+    {
+        var xmlStates = from state in _states.Values
+            orderby state.Id
+            select state;
+        XmlStates = xmlStates.ToList();
+    }
+
     private Dictionary<string, AbstractSaveState> _states = new Dictionary<string, AbstractSaveState>();
-    public AbstractSaveState GetState(string id) => _states[id];
+
+    public AbstractSaveState GetState(string id) => _states.ContainsKey(id) ? _states[id] : null;
 
     public void SetState(string id, AbstractSaveState state)
     {

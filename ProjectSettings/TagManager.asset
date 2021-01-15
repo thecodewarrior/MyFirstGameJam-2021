@@ -18,9 +18,9 @@ TagManager:
   - GroundCheck
   - Dialogue
   - Wolf
-  - 
-  - 
-  - 
+  - Frog
+  - EnemyHitDetector
+  - Wall
   - 
   - 
   - 

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour, IInventory, ISerializationCallbackReceiver
+public class Inventory : MonoBehaviour, IInventory, ISerializationCallbackReceiver//, IPersistentObject // TODO: ItemStack serialization
 {
     [SerializeField] private List<InventoryItemStack> _stacks = new List<InventoryItemStack>();
 
@@ -101,4 +102,35 @@ public class Inventory : MonoBehaviour, IInventory, ISerializationCallbackReceiv
     public void OnAfterDeserialize()
     {
     }
+
+    #region Serialization
+
+    [Header("Serialization")] [SerializeField]
+    private string _SaveId;
+
+    public string SaveID => _SaveId;
+
+    public void LoadSaveState(AbstractSaveState state)
+    {
+        if (!(state is SaveState _state))
+            return;
+        _stacks.Clear();
+        _stacks.AddRange(_state.Stacks);
+        Clean();
+    }
+
+    public AbstractSaveState GetSaveState()
+    {
+        var stacksCopy = new List<InventoryItemStack>();
+        stacksCopy.AddRange(_stacks);
+        return new SaveState {Stacks = stacksCopy};
+    }
+
+    [XmlType("Inventory")]
+    public class SaveState : AbstractSaveState
+    {
+        public List<InventoryItemStack> Stacks;
+    }
+
+    #endregion
 }

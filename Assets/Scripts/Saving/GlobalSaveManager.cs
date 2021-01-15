@@ -12,12 +12,6 @@ public static class GlobalSaveManager
     public static readonly string SaveDirectory = $"{Application.persistentDataPath}/saves";
     private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(SaveData));
 
-    static GlobalSaveManager()
-    {
-        if (Application.isEditor)
-            CurrentSaveName = "test"; // a default name when launching directly into the scene
-    }
-
     public static void CreateSaveDirectory()
     {
         Directory.CreateDirectory(SaveDirectory);
@@ -36,7 +30,7 @@ public static class GlobalSaveManager
         Data = new SaveData();
     }
 
-    public static void Load()
+    public static void ReadFromFile()
     {
         if (CurrentSaveName == null)
         {
@@ -51,10 +45,13 @@ public static class GlobalSaveManager
             else
                 Data = (SaveData) Serializer.Deserialize(new FileStream(path, FileMode.Open));
         }
+
+        Data.DidRead();
     }
 
-    public static void Save()
+    public static void WriteToFile()
     {
+        Data.WillWrite();
         Serializer.Serialize(new FileStream(CurrentSaveFilePath(), FileMode.Create), Data);
     }
 }
