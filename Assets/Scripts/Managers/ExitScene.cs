@@ -9,8 +9,7 @@ public class ExitScene : MonoBehaviour
 
     protected PlayerMovement playerMovement;
     protected bool isFadingOut;
-    protected Image fadeImage;
-    protected FadeObject fadeObject;
+    private HUDController hud;
 
     public float fadeTime;
     public string sceneToLoad;
@@ -28,8 +27,7 @@ public class ExitScene : MonoBehaviour
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
-        fadeObject = FindObjectOfType<FadeObject>();
-        fadeImage = fadeObject.GetComponent<Image>();
+        hud = FindObjectOfType<HUDController>();
     }
 
     // Update is called once per frame
@@ -37,12 +35,9 @@ public class ExitScene : MonoBehaviour
     {
         if (isFadingOut)
         {
-            Color objectColor = fadeImage.color;
-            float fadeAmount = objectColor.a + (Time.deltaTime / fadeTime);
-            objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-            fadeImage.color = objectColor;
+            hud.FadeAlpha += Time.deltaTime / fadeTime;
 
-            if (objectColor.a >= 1f)
+            if (hud.FadeAlpha >= 1f)
             {
                 isFadingOut = false;
                 LoadScene();
@@ -53,6 +48,7 @@ public class ExitScene : MonoBehaviour
     public void FadeOut()
     {
         isFadingOut = true;
+        hud.FadeAlpha = 0;
     }
 
     public void LoadScene()

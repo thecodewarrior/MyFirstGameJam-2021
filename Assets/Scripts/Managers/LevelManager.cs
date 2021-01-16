@@ -8,8 +8,7 @@ public class LevelManager : MonoBehaviour
     protected bool isFadingIn;
     public StartPoint currentStartPoint;
     protected PlayerMovement playerMovement;
-    protected FadeObject fadeObject;
-    protected Image fadeImage;
+    private HUDController hud;
 
     public string levelMusic;
     public bool playLevelMusicOnStart;
@@ -20,9 +19,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        hud = FindObjectOfType<HUDController>();
         playerMovement = FindObjectOfType<PlayerMovement>();
-        fadeObject = FindObjectOfType<FadeObject>();
-        fadeImage = fadeObject.GetComponent<Image>();
 
         FindStartPoint();
         PlacePlayerAtStart();
@@ -36,7 +34,6 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f);
         FadeIn();
     }
 
@@ -44,12 +41,9 @@ public class LevelManager : MonoBehaviour
     {
         if (isFadingIn)
         {
-            Color objectColor = fadeImage.color;
-            float fadeAmount = objectColor.a - (Time.deltaTime / fadeTime);
-            objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-            fadeImage.color = objectColor;
+            hud.FadeAlpha -= Time.deltaTime / fadeTime;
 
-            if (objectColor.a <= 0f)
+            if (hud.FadeAlpha <= 0f)
             {
                 isFadingIn = false;
             }
@@ -64,6 +58,7 @@ public class LevelManager : MonoBehaviour
     public void FadeIn()
     {
         isFadingIn = true;
+        hud.FadeAlpha = 1f;
     }
 
     public void FindStartPoint()

@@ -9,15 +9,18 @@ public class DepositInteraction : AbstractInteraction, IPersistentObject
     private bool _isStored;
     public InventoryItemStack Requirement;
 
-    public override void PerformInteraction(VisualElement element, PlayerInteractionManager manager)
+    public override bool PerformInteraction(VisualElement element, PlayerInteractionManager manager)
     {
-        if (_isStored)
-            return;
-        if (manager.Inventory[Requirement.Item].Count < Requirement.Count)
-            return;
-        manager.Inventory.ExtractItem(Requirement.Item, Requirement.Count);
-        _isStored = true;
-        BindElement(element, manager);
+        if (!_isStored)
+        {
+            if (manager.Inventory[Requirement.Item].Count < Requirement.Count)
+                return false;
+            manager.Inventory.ExtractItem(Requirement.Item, Requirement.Count);
+            _isStored = true;
+            BindElement(element, manager);
+        }
+
+        return true;
     }
 
     protected override void BindElement(VisualElement element, PlayerInteractionManager manager)

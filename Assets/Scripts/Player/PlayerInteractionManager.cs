@@ -7,42 +7,70 @@ using UnityEngine.UIElements;
 public class PlayerInteractionManager : MonoBehaviour
 {
     public IInventory Inventory;
-    private IInteraction _currentInteraction;
-    private VisualElement _currentInteractionElement;
+    private IInteractionSource _openSource;
+    private IInteraction _openInteraction;
+    private VisualElement _openInteractionElement;
+    private List<IInteractionSource> _sources = new List<IInteractionSource>();
 
     private HUDController _hud;
-    
+
     void Start()
     {
         _hud = FindObjectOfType<HUDController>();
         Inventory = GetComponent<Inventory>();
     }
-    
-    public void BeginInteraction(IInteraction interaction)
+
+    public void AddSource(IInteractionSource source)
     {
-        if (_currentInteraction != interaction)
-        {
-            _currentInteractionElement = interaction.CreateElement(this);
-            _hud.ShowInteraction(_currentInteractionElement);
-            _currentInteraction = interaction;
-        }
+        if (!_sources.Contains(source))
+            _sources.Add(source);
     }
 
-    public void EndInteraction(IInteraction interaction)
+    public void RemoveSource(IInteractionSource source)
     {
-        if (interaction == _currentInteraction)
+        _sources.Remove(source);
+    }
+
+    private (IInteractionSource, IInteraction) GetInteraction()
+    {
+        for (var i = _sources.Count - 1; i >= 0; i--)
         {
-            _hud.ClearInteraction();
-            _currentInteraction = null;
-            _currentInteractionElement = null;
+            var source = _sources[i];
+            var interaction = source.GetInteraction(this);
+            if (interaction != null)
+                return (source, interaction);
         }
+
+        return (null, null);
     }
 
     public void Update()
     {
-        if (_currentInteraction != null && Input.GetButton("Fire1") && !UIManager.HasInputFocus)
+        var (source, interaction) = GetInteraction();
+        if (interaction != _openInteraction)
         {
-            _currentInteraction.PerformInteraction(_currentInteractionElement, this);
+            if (interaction == null)
+            {
+                _hud.ClearInteraction();
+                _openSource = null;
+                _openInteraction = null;
+                _openInteractionElement = null;
+            }
+            else
+            {
+                _openSource = source;
+                _openInteractionElement = interaction.CreateElement(this);
+                _hud.ShowInteraction(_openInteractionElement);
+                _openInteraction = interaction;
+            }
+        }
+        
+        if (_openInteraction != null && Input.GetButtonDown("Fire1") && !UIManager.HasInputFocus)
+        {
+            if (_openInteraction.PerformInteraction(_openInteractionElement, this))
+            {
+                _openSource.PerformInteraction(_openInteraction, this);
+            }
         }
     }
 }

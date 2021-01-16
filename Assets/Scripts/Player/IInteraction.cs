@@ -7,5 +7,8 @@ using UnityEngine.UIElements;
 public interface IInteraction
 {
     public VisualElement CreateElement(PlayerInteractionManager manager);
-    public void PerformInteraction(VisualElement element, PlayerInteractionManager manager);
+    /**
+     * Returns true when the operation was successful
+     */
+    public bool PerformInteraction(VisualElement element, PlayerInteractionManager manager);
 }

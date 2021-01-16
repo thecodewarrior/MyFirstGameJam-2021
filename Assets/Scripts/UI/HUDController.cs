@@ -8,6 +8,18 @@ public class HUDController : MonoBehaviour
     private UIDocument _document;
     private VisualElement _interactionContainer;
     private VisualElement _currentInteractionElement;
+    private VisualElement _fadeElement;
+
+    public float FadeAlpha
+    {
+        get => _fadeElement.style.backgroundColor.value.a;
+        set
+        {
+            var color = _fadeElement.style.backgroundColor.value;
+            color.a = Mathf.Clamp(value, 0, 1);
+            _fadeElement.style.backgroundColor = color;
+        }
+    }
     
     private void Awake()
     {
@@ -20,6 +32,7 @@ public class HUDController : MonoBehaviour
 
         _interactionContainer = root.Q<VisualElement>("interaction_container");
         _interactionContainer.visible = false;
+        _fadeElement = root.Q("fade");
     }
 
     public void ShowInteraction(VisualElement interactionElement)

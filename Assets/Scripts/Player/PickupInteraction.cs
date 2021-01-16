@@ -9,13 +9,16 @@ public class PickupInteraction : AbstractInteraction, IPersistentObject
     private bool _isTaken;
     public InventoryItemStack Contents;
 
-    public override void PerformInteraction(VisualElement element, PlayerInteractionManager manager)
+    public override bool PerformInteraction(VisualElement element, PlayerInteractionManager manager)
     {
-        if (_isTaken)
-            return;
-        manager.Inventory.InsertItem(Contents.Item, Contents.Count);
-        _isTaken = true;
-        BindElement(element, manager);
+        if (!_isTaken)
+        {
+            manager.Inventory.InsertItem(Contents.Item, Contents.Count);
+            _isTaken = true;
+            BindElement(element, manager);
+        }
+
+        return true;
     }
 
     protected override void BindElement(VisualElement element, PlayerInteractionManager manager)
