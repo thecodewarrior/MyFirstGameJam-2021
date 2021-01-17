@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     protected bool isFadingIn;
     public StartPoint currentStartPoint;
     protected PlayerMovement playerMovement;
-    private HUDController hud;
+    private HUDManager hud;
 
     public string levelMusic;
     public bool playLevelMusicOnStart;
@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        hud = FindObjectOfType<HUDController>();
+        hud = FindObjectOfType<HUDManager>();
         playerMovement = FindObjectOfType<PlayerMovement>();
 
         FindStartPoint();

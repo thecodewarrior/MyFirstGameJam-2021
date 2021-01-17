@@ -1,43 +1,32 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WolfMovement : MonoBehaviour
 {
-    public Vector3 pointB;
+    public float speed;
+    public float distance;
 
-    protected Vector3 pointA;
+    private bool movingRight = true;
 
-    void Start()
+    public Transform groundDetection;
+
+    void Update()
     {
-        pointA = transform.position;
-        pointB.y = pointA.y;
-        StartCoroutine(StartMoving());
-    }
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-    IEnumerator StartMoving()
-    {
-        while (true)
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
+        if(groundInfo.collider == false)
         {
-            yield return StartCoroutine(MoveObject(transform, pointA, pointB, 3.0f));
-            var t = transform.localScale;
-            t.x = -1;
-            transform.localScale = t;
-            yield return StartCoroutine(MoveObject(transform, pointB, pointA, 3.0f));
-            t = transform.localScale;
-            t.x = 1;
-            transform.localScale = t;
-        }
-    }
-
-    IEnumerator MoveObject(Transform thisTransform, Vector3 startPos, Vector3 endPos, float time)
-    {
-        var i = 0.0f;
-        var rate = 1.0f / time;
-        while (i < 1.0f)
-        {
-            i += Time.deltaTime * rate;
-            thisTransform.position = Vector3.Lerp(startPos, endPos, i);
-            yield return null;
+            if(movingRight == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                movingRight = false;
+            } else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingRight = true;
+            }
         }
     }
 }

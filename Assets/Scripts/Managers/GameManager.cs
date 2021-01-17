@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int startingHealth;
     public int currentHealth;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance != null)
         {

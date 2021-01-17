@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class DialogueUIController : AbstractUIController
 {
-    protected Dialogue currentDialogue;
+    protected Dialogue CurrentDialogue;
     protected int currentDialogueIndex;
     protected bool isTyping;
     protected PlayerMovement playerMovement;
@@ -79,10 +79,10 @@ public class DialogueUIController : AbstractUIController
             return;
         }
 
-        currentDialogue = currentDialogueGroup[currentDialogueIndex];
+        CurrentDialogue = currentDialogueGroup[currentDialogueIndex];
 
-        SwitchSprite(currentDialogue.spriteName);
-        StartCoroutine(TypeSentence(currentDialogue.sentence));
+        SwitchSprite(CurrentDialogue.spriteName);
+        StartCoroutine(TypeSentence(CurrentDialogue.sentence));
 
         currentDialogueIndex++;
     }
@@ -117,6 +117,6 @@ public class DialogueUIController : AbstractUIController
     {
         StopAllCoroutines();
         isTyping = false;
-        _dialogueText.text = currentDialogue.sentence;
+        _dialogueText.text = CurrentDialogue.sentence;
     }
 }

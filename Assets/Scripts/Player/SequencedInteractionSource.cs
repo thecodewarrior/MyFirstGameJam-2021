@@ -3,7 +3,7 @@ using UnityEngine;
 public class SequencedInteractionSource: AbstractInteractionSource
 {
     public int CurrentIndex;
-    public AbstractInteraction[] Interactions;
+    public AbstractOldInteraction[] Interactions;
     public Renderer[] HideOnCompletion;
     
     public override IInteraction GetInteraction(PlayerInteractionManager manager)

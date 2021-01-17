@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public class PickupInteraction : AbstractInteraction, IPersistentObject
+public class PickupInteraction : AbstractOldInteraction, IPersistentObject
 {
     private bool _isTaken;
     public InventoryItemStack Contents;

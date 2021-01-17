@@ -41,10 +41,10 @@ public class Health : MonoBehaviour
 
        
 
-        if(GameManager.instance.currentHealth > 0)
+        if(GlobalPlayerData.Health > 0)
         {
             //myAudioSource.Play();
-            GameManager.instance.ReduceHealth();
+            GlobalPlayerData.DoDamage(1);
             isInvunerable = true;
             Invoke("MakePlayerVulnerable", invincibilityTime);
             StartCoroutine("FlickerSprite");

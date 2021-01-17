@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public class DepositInteraction : AbstractInteraction, IPersistentObject
+public class DepositInteraction : AbstractOldInteraction, IPersistentObject
 {
     private bool _isStored;
     public InventoryItemStack Requirement;

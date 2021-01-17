@@ -9,6 +9,7 @@ public class SaveData
     [XmlArray("States")]
     [XmlArrayItem(typeof(DepositInteraction.SaveState))]
     [XmlArrayItem(typeof(PickupInteraction.SaveState))]
+    [XmlArrayItem(typeof(GlobalPlayerData.SaveState))]
     public List<AbstractSaveState> XmlStates;
 
 

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
+        <ui:VisualElement name="track_element" style="width: 300px; height: 130px; background-color: rgba(202, 0, 207, 0.45);">
+            <ui:VisualElement style="height: 100px; background-color: rgb(23, 159, 5);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

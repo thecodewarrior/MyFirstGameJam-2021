@@ -12,11 +12,11 @@ public class PlayerInteractionManager : MonoBehaviour
     private VisualElement _openInteractionElement;
     private List<IInteractionSource> _sources = new List<IInteractionSource>();
 
-    private HUDController _hud;
+    private HUDManager _hud;
 
     void Start()
     {
-        _hud = FindObjectOfType<HUDController>();
+        _hud = FindObjectOfType<HUDManager>();
         Inventory = GetComponent<Inventory>();
     }
 

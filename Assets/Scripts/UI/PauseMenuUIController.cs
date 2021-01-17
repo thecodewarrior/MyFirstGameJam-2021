@@ -36,6 +36,7 @@ public class PauseMenuUIController : AbstractUIController
     private void SaveClicked()
     {
         _saveManager.Persist();
+        GlobalPlayerData.Persist();
         GlobalSaveManager.WriteToFile();
     }
 

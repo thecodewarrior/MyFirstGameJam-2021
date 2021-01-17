@@ -37,12 +37,18 @@ public class InventoryListUIController : AbstractUIController
 
     private void OnEnable()
     {
-        Inventory.OnChange += OnInventoryChange;
+        if(Inventory == null)
+            Debug.LogWarning("InventoryListUIController doesn't have an Inventory specified");
+        else
+            Inventory.OnChange += OnInventoryChange;
     }
 
     private void OnDisable()
     {
-        Inventory.OnChange -= OnInventoryChange;
+        if(Inventory == null)
+            Debug.LogWarning("InventoryListUIController doesn't have an Inventory specified");
+        else
+            Inventory.OnChange -= OnInventoryChange;
     }
 
     private void Update()

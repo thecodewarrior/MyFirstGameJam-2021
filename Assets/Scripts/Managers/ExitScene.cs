@@ -9,7 +9,7 @@ public class ExitScene : MonoBehaviour
 
     protected PlayerMovement playerMovement;
     protected bool isFadingOut;
-    private HUDController hud;
+    private HUDManager hud;
 
     public float fadeTime;
     public string sceneToLoad;
@@ -27,7 +27,7 @@ public class ExitScene : MonoBehaviour
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
-        hud = FindObjectOfType<HUDController>();
+        hud = FindObjectOfType<HUDManager>();
     }
 
     // Update is called once per frame
