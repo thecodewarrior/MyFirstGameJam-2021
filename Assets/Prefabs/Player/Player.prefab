@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 6504062553134366895}
   - component: {fileID: 6504062553134366893}
   - component: {fileID: 3726243738577759906}
-  - component: {fileID: 1721691720231828126}
   - component: {fileID: 5404848981462173661}
   - component: {fileID: 4765283898874983006}
   m_Layer: 6
@@ -202,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d7c91c2f6f3dd4a8eef1911c759dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   runSpeed: 50
 --- !u!114 &6504062553134366893
 MonoBehaviour:
@@ -249,20 +249,6 @@ MonoBehaviour:
   invincibilityTime: 2
   filckerInterval: 0.1
   isInvunerable: 0
---- !u!114 &1721691720231828126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6504062553134366889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b8db160cd145b9837843411ceb6e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stacks: []
-  _SaveId: 
 --- !u!114 &5404848981462173661
 MonoBehaviour:
   m_ObjectHideFlags: 0

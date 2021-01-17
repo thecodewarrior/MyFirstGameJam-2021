@@ -92,7 +92,8 @@ public class LevelManager : MonoBehaviour
 
     public void KillPlayer()
     {
-
+        playerMovement.isDead = true;
+        print("player is dead");
     }
 
 }

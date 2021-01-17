@@ -7,7 +7,6 @@ public class InventoryListUIController : AbstractUIController
     private ListView _itemListView;
 
     public VisualTreeAsset ElementTemplate;
-    public Inventory Inventory;
 
     protected override void Bind()
     {
@@ -15,11 +14,8 @@ public class InventoryListUIController : AbstractUIController
         _itemListView.itemHeight = 50;
 
         _itemListView.makeItem = () => ElementTemplate.Instantiate();
-        _itemListView.bindItem = (element, i) => { BindingUtils.ItemStack.Bind(element, Inventory.Stacks[i]); };
-        _itemListView.itemsSource = Inventory.Stacks;
-
-        // root.Q<Button>("add_button").clicked += () => { Inventory.InsertItem(HolyWater, 1); };
-        // root.Q<Button>("remove_button").clicked += () => { Inventory.ExtractItem(HolyWater, 1); };
+        _itemListView.bindItem = (element, i) => { BindingUtils.ItemStack.Bind(element, GlobalPlayerData.Inventory.Stacks[i]); };
+        _itemListView.itemsSource = GlobalPlayerData.Inventory.Stacks;
     }
 
     protected override void Unbind()
@@ -37,18 +33,18 @@ public class InventoryListUIController : AbstractUIController
 
     private void OnEnable()
     {
-        if(Inventory == null)
+        if(GlobalPlayerData.Inventory == null)
             Debug.LogWarning("InventoryListUIController doesn't have an Inventory specified");
         else
-            Inventory.OnChange += OnInventoryChange;
+            GlobalPlayerData.Inventory.OnChange += OnInventoryChange;
     }
 
     private void OnDisable()
     {
-        if(Inventory == null)
+        if(GlobalPlayerData.Inventory == null)
             Debug.LogWarning("InventoryListUIController doesn't have an Inventory specified");
         else
-            Inventory.OnChange -= OnInventoryChange;
+            GlobalPlayerData.Inventory.OnChange -= OnInventoryChange;
     }
 
     private void Update()

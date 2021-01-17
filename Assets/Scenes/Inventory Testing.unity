@@ -246,6 +246,7 @@ MonoBehaviour:
   Contents:
     Item: {fileID: 11400000, guid: 4148def8e3b7946a9baa59c8a4a7320d, type: 2}
     Count: 1
+  _SaveId: 
 --- !u!1 &755808483
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +451,7 @@ MonoBehaviour:
   Requirement:
     Item: {fileID: 11400000, guid: 9373f793aa3e54d4daf75df33e57c51a, type: 2}
     Count: 8
+  _SaveId: 
 --- !u!114 &1105507750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,7 +1033,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1936994121}
-  - component: {fileID: 1936994120}
   - component: {fileID: 1936994125}
   - component: {fileID: 1936994122}
   - component: {fileID: 1936994123}
@@ -1043,23 +1044,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1936994120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936994119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b8db160cd145b9837843411ceb6e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stacks:
-  - Item: {fileID: 11400000, guid: 4148def8e3b7946a9baa59c8a4a7320d, type: 2}
-    Count: 1
-  - Item: {fileID: 11400000, guid: 9373f793aa3e54d4daf75df33e57c51a, type: 2}
-    Count: 5
 --- !u!4 &1936994121
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,7 +1289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UITemplate: {fileID: 9197481963319205126, guid: 6bf9a79a34c2c49ff92960b7e15714f4, type: 3}
   ElementTemplate: {fileID: 9197481963319205126, guid: 7f89551acd4d74ce58831235d936dd2b, type: 3}
-  Inventory: {fileID: 1936994120}
+  Inventory: {fileID: 0}
 --- !u!1 &2128507144
 GameObject:
   m_ObjectHideFlags: 0

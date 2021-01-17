@@ -17,7 +17,7 @@ public class PlayerInteractionManager : MonoBehaviour
     void Start()
     {
         _hud = FindObjectOfType<HUDManager>();
-        Inventory = GetComponent<Inventory>();
+        Inventory = GlobalPlayerData.Inventory;
     }
 
     public void AddSource(IInteractionSource source)

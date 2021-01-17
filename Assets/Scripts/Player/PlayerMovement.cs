@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     protected CharacterController2D controller;
     protected bool isJumping = false;
-    protected bool isHiding = true;
     protected Animator animator;
     protected Vector3 previousPosition;
-
+    public bool isDead;
+    public bool isHiding { get; private set; } = false;
     public bool isCrouching { get; private set; } = false;
     public bool isFrozen { get; private set; } = false;
     public bool isFalling { get; private set; } = false;

@@ -10,5 +10,18 @@ namespace Interactions.Actions
         public List<Renderer> Hide;
 
         public InteractionNode Next;
+        
+        protected override void OnEnterNode()
+        {
+            foreach (var component in Show)
+            {
+                component.enabled = true;
+            }
+            foreach (var component in Hide)
+            {
+                component.enabled = false;
+            }
+            AdvanceTo(Next);
+        }
     }
 }

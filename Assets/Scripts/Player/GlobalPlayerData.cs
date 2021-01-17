@@ -1,9 +1,11 @@
 using System;
 using System.Xml.Serialization;
+using Inventory;
 
 public static class GlobalPlayerData
 {
     public static int Health { get; private set; }
+    public static IInventory Inventory = new BasicInventory();
 
     public static void DoDamage(int amount)
     {

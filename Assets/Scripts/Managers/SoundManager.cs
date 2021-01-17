@@ -100,4 +100,13 @@ public class SoundManager : MonoBehaviour
 		audioSource.Stop();
 		audioSource.volume = startVolume;
 	}
+
+	public void StopFadeOut()
+    {
+		StopAllCoroutines();
+		foreach (Sound s in sounds)
+		{
+			s.source.volume = s.volume;
+		}
+	}
 }

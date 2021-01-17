@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="InventoryItemStackElement" src="InventoryItemStackElement.uxml" />
+    <ui:VisualElement style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: flex-start;">
+        <ui:VisualElement name="track_element" style="width: 400px; margin-bottom: 50px;">
+            <ui:VisualElement style="background-color: rgba(70, 70, 70, 255);">
+                <ui:Instance template="InventoryItemStackElement" name="item" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -5,13 +5,17 @@ namespace Interactions
 {
     public abstract class InteractionNode : MonoBehaviour
     {
-        [Tooltip("Whether this node should be the first active node")]
-        [SerializeField] private bool _useAsFirstNode;
+        [Tooltip("Whether this is the active node")]
+        [SerializeField] private bool _isCurrent;
 
         /**
          * Whether this is the current node. If this is false, the node should do nothing.
          */
-        public bool IsCurrent { get; private set; }
+        public bool IsCurrent
+        {
+            get => _isCurrent;
+            private set => _isCurrent = value;
+        }
 
         /**
          * Whether entering this node should be delayed until LateUpdate. This is used to prevent multiple triggers
@@ -64,7 +68,7 @@ namespace Interactions
         
         protected virtual void Start()
         {
-            IsCurrent = _useAsFirstNode;
+            IsCurrent = _isCurrent;
             if (IsCurrent)
                 EnterNode();
         }
