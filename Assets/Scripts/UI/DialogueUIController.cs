@@ -1,30 +1,26 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using Interactions.Actions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DialogueUIController : AbstractUIController
 {
-    protected Dialogue CurrentDialogue;
-    protected int currentDialogueIndex;
+    protected override string TemplateName => "dialogue";
+    
     protected bool isTyping;
     protected PlayerMovement playerMovement;
-    [Header("Settings")]
-    public float typeSpeed;
+    [Header("Settings")] public float typeSpeed;
 
-    public List<Dialogue> currentDialogueGroup = new List<Dialogue>();
+    private DialogueLine _currentDialogueLine;
+    private int _currentDialogueIndex;
+    private StartDialogueAction _action;
 
-    [Header("Sprites")]
-    public Sprite playerNormalSprite;
-    public Sprite wolfNormalSprite;
-    
     private VisualElement _profile;
     private Label _dialogueText;
 
     void OnEnable()
     {
-        currentDialogueIndex = 0;
+        _currentDialogueIndex = 0;
         playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
@@ -39,74 +35,65 @@ public class DialogueUIController : AbstractUIController
         if (Active && Input.GetButtonDown("Fire1"))
         {
             if (isTyping)
-            {   
+            {
                 FastForwardDialogue();
-            } else
+            }
+            else
             {
                 DisplayNextSentence();
             }
         }
     }
 
-    public void SwitchSprite(string spriteName)
+    public void SwitchSprite(Sprite sprite)
     {
-        switch (spriteName)
-        {
-            case "player_normal":
-                _profile.style.backgroundImage = new StyleBackground(playerNormalSprite);
-                break;
-            case "wolf_normal":
-                _profile.style.backgroundImage = new StyleBackground(wolfNormalSprite);
-                break;
-        }
+        _profile.style.backgroundImage = new StyleBackground(sprite);
     }
 
-    public void StartDialogue()
+    public void StartDialogue(StartDialogueAction action)
     {
-        if(!Active)
+        if (!Active)
             Manager.Push(this);
-        currentDialogueIndex = 0;
-        SwitchSprite(currentDialogueGroup[0].spriteName);
-        _dialogueText.text = "";
+
+        playerMovement.FreezePlayer();
+        
+        _action = action;
+        _currentDialogueIndex = 0;
         DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
     {
-        if(currentDialogueIndex > currentDialogueGroup.Count - 1)
+        if (_currentDialogueIndex > _action.Dialogue.Count - 1)
         {
             EndDialogue();
             return;
         }
 
-        CurrentDialogue = currentDialogueGroup[currentDialogueIndex];
+        _currentDialogueLine = _action.Dialogue[_currentDialogueIndex];
 
-        SwitchSprite(CurrentDialogue.spriteName);
-        StartCoroutine(TypeSentence(CurrentDialogue.sentence));
+        _dialogueText.text = "";
+        SwitchSprite(_currentDialogueLine.Portrait);
+        StartCoroutine(TypeSentence(_currentDialogueLine.Text));
 
-        currentDialogueIndex++;
+        _currentDialogueIndex++;
     }
 
     public void EndDialogue()
     {
-        if(Active)
+        if (Active)
             Manager.Pop();
         playerMovement.UnFreezePlayer();
+        _action.EndDialogue();
     }
 
     public IEnumerator TypeSentence(string sentence)
     {
         isTyping = true;
-        char[] letters = sentence.ToCharArray();
-        
-        for (int i = 0; i < letters.Length; i++)
+
+        for (int i = 0; i <= sentence.Length; i++)
         {
-            int characterIndex = i;
-            string text = sentence.Substring(0, characterIndex);
-            
-            text += "<color=#00000000>" + sentence.Substring(characterIndex) + "</color>";
-            
-            _dialogueText.text = text;
+            _dialogueText.text = sentence.Substring(0, i);
             yield return new WaitForSeconds(typeSpeed);
         }
 
@@ -117,6 +104,6 @@ public class DialogueUIController : AbstractUIController
     {
         StopAllCoroutines();
         isTyping = false;
-        _dialogueText.text = CurrentDialogue.sentence;
+        _dialogueText.text = _currentDialogueLine.Text;
     }
 }

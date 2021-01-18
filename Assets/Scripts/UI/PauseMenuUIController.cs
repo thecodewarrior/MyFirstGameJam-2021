@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class PauseMenuUIController : AbstractUIController
 {
+    protected override string TemplateName => "pause_menu";
+    
     public string MainMenuName;
     private SceneSaveManager _saveManager;
 

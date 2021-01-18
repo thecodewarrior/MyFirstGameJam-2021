@@ -4,8 +4,10 @@ using UnityEngine.UIElements;
 
 public abstract class AbstractHUDController : MonoBehaviour
 {
-    [SerializeField]
-    private VisualTreeAsset UITemplate;
+    /**
+     * The address to load the uxml template from
+     */
+    protected abstract string TemplateName { get; }
     
     public VisualElement Root { get; private set; }
     
@@ -14,7 +16,8 @@ public abstract class AbstractHUDController : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Root = UITemplate.Instantiate();
+        var template = UITemplates.GetTemplate(TemplateName);
+        Root = template.Instantiate();
         Root.style.position = new StyleEnum<Position>(Position.Absolute);
         Root.style.left = new StyleLength(0f);
         Root.style.right = new StyleLength(0f);

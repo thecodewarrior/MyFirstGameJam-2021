@@ -25,10 +25,8 @@ namespace Interactions.Triggers
 
         public void Update()
         {
-            if (IsCurrent && _playerIsInside && Input.GetButtonDown("Interact"))
+            if (IsCurrent && _playerIsInside && Input.GetButtonDown("Interact") && !UIManager.HasInputFocus)
             {
-                if(Prompt)
-                    _hudManager.HideController(Prompt);
                 AdvanceTo(Next);
             }
         }
@@ -42,11 +40,13 @@ namespace Interactions.Triggers
         {
             TriggerCollider.enabled = false;
             _playerIsInside = false;
+            if(Prompt)
+                _hudManager.HideController(Prompt);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (IsCurrent && other.CompareTag("Player"))
             {
                 _playerIsInside = true;
                 if(Prompt)
@@ -56,7 +56,7 @@ namespace Interactions.Triggers
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (IsCurrent && other.CompareTag("Player"))
             {
                 _playerIsInside = false;
                 if(Prompt)

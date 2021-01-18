@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class NewSaveDialogUIController : AbstractUIController
 {
+    protected override string TemplateName => "new_save_dialog";
+    
     public string GameSceneName;
     private SceneSaveManager _saveManager;
 

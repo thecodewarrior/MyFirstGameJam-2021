@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class ItemPromptHUDController : AbstractTrackingHUDController
 {
+    protected override string TemplateName => "item_prompt";
+    
     [Tooltip("The item and quantity to display")]
     public InventoryItemStack ItemStack;
 

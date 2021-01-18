@@ -16,7 +16,7 @@ namespace Interactions
             get => _isCurrent;
             private set => _isCurrent = value;
         }
-
+        
         /**
          * Whether entering this node should be delayed until LateUpdate. This is used to prevent multiple triggers
          * occurring on a single frame.

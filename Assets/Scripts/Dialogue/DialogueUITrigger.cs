@@ -64,8 +64,8 @@ public class DialogueUITrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        _dialogueController.currentDialogueGroup = dialogueLines;
-        _dialogueController.StartDialogue();
+        // _dialogueController.currentDialogueGroup = dialogueLines;
+        // _dialogueController.StartDialogue();
     }
 
     public void MakePlayerFaceNPC()

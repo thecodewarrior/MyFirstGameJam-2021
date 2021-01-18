@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class MainMenuUIController : AbstractUIController
 {
+    protected override string TemplateName => "main_menu";
+    
     public AbstractUIController SaveListController;
     public AbstractUIController NewSaveDialogController;
 

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="Theme.uss" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; padding-top: 0; padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        <ui:VisualElement name="dialogue_box" style="width: 750px; height: 300px; flex-direction: row; margin-top: 200px;">
+            <ui:VisualElement name="dialogue_background" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-image: url(&apos;/Assets/Sprites/UI/Dialogue/dialogue_box.png&apos;); opacity: 0.75;" />
+            <ui:VisualElement name="profile" style="width: 40%; height: 100%; align-items: flex-start; position: absolute; left: -19.5%; top: -50%; background-image: url(&apos;/Assets/Sprites/UI/Dialogue/blank_portrait.png&apos;);" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="dialogue" style="font-size: 35px; -unity-font-style: bold; color: rgb(0, 0, 0); white-space: normal; flex-grow: 1; margin-left: 16%; margin-top: 5%; margin-right: 11%; margin-bottom: 5%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

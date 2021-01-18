@@ -6,12 +6,20 @@ using UnityEngine.UIElements;
 
 public class SaveListUIController : AbstractUIController
 {
+    protected override string TemplateName => "save_list";
+    private VisualTreeAsset _elementTemplate;
+    
     private ListView _saveListView;
 
-    public VisualTreeAsset ElementTemplate;
     public string GameSceneName;
 
     private List<string> _saveNames = new List<string>();
+
+    protected override void Start()
+    {
+        base.Start();
+        _elementTemplate = UITemplates.GetTemplate("save_list_element");
+    }
 
     protected override void Bind()
     {
@@ -21,7 +29,7 @@ public class SaveListUIController : AbstractUIController
 
         _saveListView.makeItem = () =>
         {
-            var element = ElementTemplate.Instantiate();
+            var element = _elementTemplate.Instantiate();
             element.userData = 0;
             element.Q<Button>("load_button").clicked += () => { OpenSave((int) element.userData); };
             element.Q<Button>("delete_button").clicked += () => { DeleteSave((int) element.userData); };

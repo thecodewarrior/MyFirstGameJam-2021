@@ -9,5 +9,28 @@ namespace Interactions.Actions
         public List<DialogueLine> Dialogue;
 
         public InteractionNode Next;
+
+        private DialogueUIController _dialogueController;
+
+        protected override void InitializeNode()
+        {
+            _dialogueController = FindObjectOfType<DialogueUIController>();
+        }
+
+        protected override void OnEnterNode()
+        {
+            base.OnEnterNode();
+            TriggerDialogue();
+        }
+
+        public void TriggerDialogue()
+        {
+            _dialogueController.StartDialogue(this);
+        }
+
+        public void EndDialogue()
+        {
+            AdvanceTo(Next);
+        }
     }
 }

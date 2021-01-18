@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
  * Automatically tracks a game object with a UI element. The element's bottom-right or bottom-left corner will be
  * locked to the object's position, depending on where the player is. 
  */
-public class AbstractTrackingHUDController : AbstractHUDController
+public abstract class AbstractTrackingHUDController : AbstractHUDController
 {
     [Tooltip("The object the #track_element should track to")]
     public GameObject TrackTarget;
