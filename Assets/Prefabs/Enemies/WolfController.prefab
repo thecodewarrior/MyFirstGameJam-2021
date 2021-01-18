@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4029705481922691797}
-  speed: 5
+  speed: 7.5
   distance: 5
   groundDetection: {fileID: 4029705481546697638}
   whatIsGround:

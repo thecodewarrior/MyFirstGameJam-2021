@@ -191,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7934884623914623143}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.72, y: -2.52, z: 0}
+  m_LocalPosition: {x: -12.72, y: -1.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7934884622833917234}
@@ -304,7 +304,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 29.11, y: 28.86}
+  m_Size: {x: 25, y: 28.86}
   m_EdgeRadius: 0
 --- !u!114 &7934884623936018361
 MonoBehaviour:
@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7934884624198268392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.3, y: -7.31, z: 0}
+  m_LocalPosition: {x: 14.3, y: -6.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7934884622833917234}
@@ -474,8 +474,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1255815167
-  m_SortingLayer: 2
+  m_SortingLayerID: 587412757
+  m_SortingLayer: 3
   m_SortingOrder: 15
   m_Sprite: {fileID: -521052967618530214, guid: 42308994e3f7c4116bafb328d6cb99d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

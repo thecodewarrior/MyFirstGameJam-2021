@@ -1,26 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Interactions.Actions
 {
-    [AddComponentMenu("Interaction/Action/Deposit Item")]
+    [AddComponentMenu("Interaction/Action/Deposit Items")]
     public class DepositItemAction : AbstractAction
     {
-        public InventoryItemStack ItemStack;
+        public List<InventoryItemStack> Items;
 
         public InteractionNode Fail;
         public InteractionNode Success;
 
         protected override void OnEnterNode()
         {
-            if (GlobalPlayerData.Inventory[ItemStack.Item].Count < ItemStack.Count)
+            foreach (var stack in Items)
             {
-                AdvanceTo(Fail);
+                if (GlobalPlayerData.Inventory[stack.Item].Count < stack.Count)
+                {
+                    AdvanceTo(Fail);
+                    return;
+                }
             }
-            else
+            
+            foreach (var stack in Items)
             {
-                GlobalPlayerData.Inventory.ExtractItem(ItemStack.Item, ItemStack.Count);
-                AdvanceTo(Success);
+                GlobalPlayerData.Inventory.ExtractItem(stack.Item, stack.Count);
             }
+            AdvanceTo(Success);
         }
     }
 }

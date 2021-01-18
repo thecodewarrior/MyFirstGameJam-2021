@@ -10,21 +10,11 @@ namespace Interactions.Actions
 
         [Tooltip("The node to immediately advance to")]
         public InteractionNode Next;
-        
-        protected override void InitializeNode()
-        {
-            Debug.Log($"Debug action '{DebugName}': InitializeNode called");
-        }
 
         protected override void OnEnterNode()
         {
             Debug.Log($"Debug action '{DebugName}': OnEnterNode called");
             AdvanceTo(Next);
-        }
-
-        protected override void OnExitNode()
-        {
-            Debug.Log($"Debug action '{DebugName}': OnExitNode called");
         }
     }
 }

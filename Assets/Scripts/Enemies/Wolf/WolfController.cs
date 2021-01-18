@@ -84,15 +84,17 @@ public class WolfController : MonoBehaviour
     {
         actionNumber = Random.Range(0, 10);
 
-        if(actionNumber < 2)
+        if (actionNumber < 2)
         {
             //Do Nothing
             return;
-        } else if (actionNumber >= 2 && actionNumber < 6)
+        }
+        else if (actionNumber >= 2 && actionNumber < 6)
         {
             wolfMovement.ChangeStateToIdle();
             Invoke("ContinueWalking", 3f);
-        } else if (actionNumber >= 6 && actionNumber < 10)
+        }
+        else if (actionNumber >= 6 && actionNumber < 10)
         {
             wolfMovement.ChangeStateToIdle();
             Invoke("TurnAround", 3f);

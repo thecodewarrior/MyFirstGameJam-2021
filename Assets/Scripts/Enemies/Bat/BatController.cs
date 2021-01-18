@@ -12,6 +12,7 @@ public class BatController : MonoBehaviour
     protected bool playerNear;
     protected bool canAttack = true;
     protected BezierFollow bezierFollow;
+    protected SpriteRenderer[] controlPointSpriteRenderers;
     public GameObject route;
     public float timeBetweenAttacks;
     protected float attackEndTime;
@@ -22,6 +23,8 @@ public class BatController : MonoBehaviour
         detectPlayer = GetComponentInChildren<DetectPlayer>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         bezierFollow = GetComponent<BezierFollow>();
+        controlPointSpriteRenderers = route.GetComponentsInChildren<SpriteRenderer>();
+        TurnOffControlPoints();
         FaceLeft();
     }
 
@@ -111,5 +114,13 @@ public class BatController : MonoBehaviour
     {
         isFacingLeft = false;
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    public void TurnOffControlPoints()
+    {
+        for (int i = 0; i < controlPointSpriteRenderers.Length; i++)
+        {
+            controlPointSpriteRenderers[i].enabled = false;
+        }
     }
 }

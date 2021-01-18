@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isCurrent: 0
-  TriggerCollider: {fileID: 2459038782430772729}
+  TriggerColliders:
+  - {fileID: 2459038782430772729}
   FacePlayerToward: {fileID: 0}
   FaceTowardPlayer: {fileID: 0}
   Next: {fileID: 0}
