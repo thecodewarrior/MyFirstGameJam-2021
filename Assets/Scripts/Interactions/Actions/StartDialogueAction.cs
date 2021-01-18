@@ -19,12 +19,6 @@ namespace Interactions.Actions
 
         protected override void OnEnterNode()
         {
-            base.OnEnterNode();
-            TriggerDialogue();
-        }
-
-        public void TriggerDialogue()
-        {
             _dialogueController.StartDialogue(this);
         }
 

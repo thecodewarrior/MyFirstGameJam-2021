@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isCurrent: 0
-  ItemStack:
-    Item: {fileID: 0}
+  Items:
+  - Item: {fileID: 0}
     Count: 0
   Next: {fileID: 0}

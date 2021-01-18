@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 1804548956813932889}
   - component: {fileID: 8458572718471984323}
   - component: {fileID: 6208570694453580356}
+  - component: {fileID: 153366258223657111}
   m_Layer: 0
   m_Name: Ingame UI
   m_TagString: Untagged
@@ -143,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd2a0bf070c4df19f0c4d87b18e3bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UITemplate: {fileID: 9197481963319205126, guid: 5489eb27125974924a89ef34b626257e, type: 3}
   MainMenuName: MainMenu
 --- !u!114 &8458572718471984323
 MonoBehaviour:
@@ -157,9 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fdbc393dde4b9fb369c940ce4ac4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UITemplate: {fileID: 9197481963319205126, guid: 6bf9a79a34c2c49ff92960b7e15714f4, type: 3}
-  ElementTemplate: {fileID: 9197481963319205126, guid: 7f89551acd4d74ce58831235d936dd2b, type: 3}
-  Inventory: {fileID: 0}
 --- !u!114 &6208570694453580356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,11 +169,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e01689db8c1441eb607c1e26bb559ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UITemplate: {fileID: 9197481963319205126, guid: a55165f3aab4f46f18e2869a09c247fa, type: 3}
   typeSpeed: 0.05
-  currentDialogueGroup: []
-  playerNormalSprite: {fileID: 21300000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
-  wolfNormalSprite: {fileID: 21300018, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+--- !u!114 &153366258223657111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804548956813932887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8cce05985b475799b8eb3b9343acae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1804548956825524620
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if (currentStartPoint == null)
+        if (currentStartPoint == null && startPoints.Length > 0)
         {
             currentStartPoint = startPoints[0];
         }
@@ -82,7 +82,8 @@ public class LevelManager : MonoBehaviour
 
     public void PlacePlayerAtStart()
     {
-        playerMovement.transform.position = currentStartPoint.gameObject.transform.position;
+        if(currentStartPoint != null)
+            playerMovement.transform.position = currentStartPoint.gameObject.transform.position;
     }
 
     public void ReduceHealth()
