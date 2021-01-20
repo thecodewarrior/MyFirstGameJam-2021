@@ -201,8 +201,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d7c91c2f6f3dd4a8eef1911c759dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGroundType: 
   isDead: 0
-  runSpeed: 50
+  runSpeed: 40
+  grassSFX:
+  - {fileID: 8300000, guid: c03f9b8336130417393f712c2807a739, type: 3}
+  - {fileID: 8300000, guid: d87998a6b652b4d108440221d8c08261, type: 3}
+  - {fileID: 8300000, guid: 4dfb33397b2dc44a4a35cee3405061df, type: 3}
+  - {fileID: 8300000, guid: 62e1243d2ce704018a3f9120f6b5ecce, type: 3}
+  woodSFX:
+  - {fileID: 8300000, guid: 524ae58472ec54e949a4916351274ea2, type: 3}
+  - {fileID: 8300000, guid: 62fb35a17e0084123887e80136af66a2, type: 3}
+  - {fileID: 8300000, guid: 8050a069a17db4642851a0398131fd23, type: 3}
+  - {fileID: 8300000, guid: 49225cb00dc724d288b48a33c5233db4, type: 3}
+  gravelSFX:
+  - {fileID: 8300000, guid: 58349c79c53474ad1ac9c5be9fc08271, type: 3}
+  - {fileID: 8300000, guid: 6f0eac26733b0482eb554d6e7d7ead8c, type: 3}
+  - {fileID: 8300000, guid: d62213880fe42460c84069736b7f0145, type: 3}
+  - {fileID: 8300000, guid: c6aee0ae46c9041d89f7090d27bdd1a6, type: 3}
+  swampSFX: []
 --- !u!114 &6504062553134366893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +290,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -366,6 +383,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6504062553862272305}
+  - component: {fileID: 3113390885969166427}
+  - component: {fileID: 6309660600715383267}
   m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -387,6 +406,34 @@ Transform:
   m_Father: {fileID: 6504062553134366891}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3113390885969166427
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6504062553862272304}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
+--- !u!114 &6309660600715383267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6504062553862272304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e766839c42e95446e9a02a6d0827883a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7362314802191066475
 GameObject:
   m_ObjectHideFlags: 0

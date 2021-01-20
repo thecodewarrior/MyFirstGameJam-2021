@@ -54,7 +54,7 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
-  - name: demo_2
+  - name: scene00_music
     clip: {fileID: 8300000, guid: 7c6d1519498294c08aab9d18a7a4206c, type: 3}
     volume: 0.2
     volumeVariance: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
-  - name: demo_3
+  - name: forest_music
     clip: {fileID: 8300000, guid: 0bac18c9de8774477993a94fa43b2808, type: 3}
     volume: 0.2
     volumeVariance: 0
@@ -72,3 +72,13 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
+  - name: wolf_music
+    clip: {fileID: 8300000, guid: b067cfcdb8ef74e158ee38f8007fc558, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
+  currentMusicPlaying: 

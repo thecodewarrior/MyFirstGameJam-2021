@@ -6,6 +6,8 @@ namespace Interactions.Actions
     [AddComponentMenu("Interaction/Action/Start Dialogue")]
     public class StartDialogueAction : AbstractAction
     {
+        protected override bool EnterLate => true;
+        
         public List<DialogueLine> Dialogue;
 
         public InteractionNode Next;

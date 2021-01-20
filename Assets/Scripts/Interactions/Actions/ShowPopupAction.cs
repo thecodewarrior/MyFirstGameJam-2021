@@ -6,6 +6,8 @@ namespace Interactions.Actions
     [AddComponentMenu("Interaction/Action/Show Popup")]
     public class ShowPopupAction : AbstractAction
     {
+        protected override bool EnterLate => true;
+        
         public List<PopupMessage> Messages;
 
         public InteractionNode Next;

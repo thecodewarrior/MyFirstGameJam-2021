@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 707255777078174632}
   - component: {fileID: 707255777078174634}
   - component: {fileID: 707255777078174633}
+  - component: {fileID: 5316135023625960815}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_Offset: {x: -0.05867672, y: 4.3775873}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5882405, y: 0.028795892}
     oldSize: {x: 3.56, y: 10.8}
     newSize: {x: 3.56, y: 10.8}
     adaptiveTilingThreshold: 0.5
@@ -124,3 +125,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hiddenColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+--- !u!114 &5316135023625960815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707255777078174294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000005d20a75bff37da4a153503237f977abd1f96918c
+  m_ShapePath:
+  - {x: -0.94953156, y: 0.10233402, z: 0}
+  - {x: -0.42422485, y: 0.0040078163, z: 0}
+  - {x: 0.46494293, y: 0.021687508, z: 0}
+  - {x: 0.86795044, y: 0.1691761, z: 0}
+  - {x: -0.22568512, y: 1.652195, z: 0}
+  - {x: -0.7274246, y: 2.0392487, z: 0}
+  - {x: -0.8100586, y: 1.3075027, z: 0}
+  m_ShapePathHash: 1457035
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -73550

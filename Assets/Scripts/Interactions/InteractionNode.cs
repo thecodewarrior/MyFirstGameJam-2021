@@ -5,7 +5,7 @@ namespace Interactions
 {
     public abstract class InteractionNode : MonoBehaviour
     {
-        [Tooltip("Whether this is the active node")]
+        [Tooltip("Whether this is the active node. Purely for readout in the inspector")]
         [SerializeField] private bool _isCurrent;
 
         /**
@@ -16,6 +16,8 @@ namespace Interactions
             get => _isCurrent;
             private set => _isCurrent = value;
         }
+
+        public InteractionSaveManager SaveManager;
         
         /**
          * Whether entering this node should be delayed until LateUpdate. This is used to prevent multiple triggers
@@ -68,9 +70,7 @@ namespace Interactions
         
         protected virtual void Start()
         {
-            IsCurrent = _isCurrent;
-            if (IsCurrent)
-                EnterNode();
+            _isCurrent = false;
         }
 
         protected virtual void LateUpdate()
@@ -82,15 +82,21 @@ namespace Interactions
             }
         }
 
-        private void ExitNode()
+        public void ExitNode()
         {
+            if (!IsCurrent)
+                return;
             OnExitNode();
             IsCurrent = false;
+            SaveManager.CurrentNode = null;
         }
 
-        private void EnterNode()
+        public void EnterNode()
         {
+            if (IsCurrent)
+                return;
             IsCurrent = true;
+            SaveManager.CurrentNode = this;
             OnEnterNode();
         }
 
@@ -107,7 +113,7 @@ namespace Interactions
             {
                 return;
             }
-
+            
             if (next.EnterLate)
             {
                 next._delayedEnter = true;

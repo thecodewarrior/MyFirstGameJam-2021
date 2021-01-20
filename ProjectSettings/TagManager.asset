@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Ground
   - Wolf
+  - Grass
+  - Swamp
+  - Gravel
+  - Wood
   layers:
   - Default
   - TransparentFX

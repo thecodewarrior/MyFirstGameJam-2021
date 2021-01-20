@@ -13,9 +13,12 @@ public class BatController : MonoBehaviour
     protected bool canAttack = true;
     protected BezierFollow bezierFollow;
     protected SpriteRenderer[] controlPointSpriteRenderers;
+    protected Animator animator;
+    protected float attackEndTime;
+
     public GameObject route;
     public float timeBetweenAttacks;
-    protected float attackEndTime;
+    public float timeBeforeDiveAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class BatController : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         bezierFollow = GetComponent<BezierFollow>();
         controlPointSpriteRenderers = route.GetComponentsInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         TurnOffControlPoints();
         FaceLeft();
     }
@@ -65,11 +69,13 @@ public class BatController : MonoBehaviour
         MakeEnemyFacePlayer();
         SetRoute();
         bezierFollow.coroutineAllowed = true;
+        Invoke("SetBatToDiving", timeBeforeDiveAnimation);
     }
 
     public void StopAttack()
     {
         isAttacking = false;
+        SetBatToFlying();
         StartCoroutine(StartAttackCoolDown());
     }
 
@@ -122,5 +128,15 @@ public class BatController : MonoBehaviour
         {
             controlPointSpriteRenderers[i].enabled = false;
         }
+    }
+
+    public void SetBatToFlying()
+    {
+        animator.SetBool("isDiving", false);
+    }
+
+    public void SetBatToDiving()
+    {
+        animator.SetBool("isDiving", true);
     }
 }

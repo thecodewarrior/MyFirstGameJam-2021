@@ -7,8 +7,6 @@ public class HUDManager : MonoBehaviour
 {
     private UIDocument _document;
     private VisualElement _overlayContainer;
-    private VisualElement _interactionContainer;
-    private VisualElement _currentInteractionElement;
     private VisualElement _fadeElement;
 
     private HashSet<AbstractHUDController> _visibleControllers = new HashSet<AbstractHUDController>();
@@ -34,8 +32,6 @@ public class HUDManager : MonoBehaviour
         var root = _document.rootVisualElement;
 
         _overlayContainer = root.Q("overlay_container");
-        _interactionContainer = root.Q("interaction_container");
-        _interactionContainer.visible = false;
         _fadeElement = root.Q("fade");
     }
 
@@ -62,20 +58,5 @@ public class HUDManager : MonoBehaviour
 
         controller.OnHide();
         _overlayContainer.Remove(controller.Root);
-    }
-
-    public void ShowInteraction(VisualElement interactionElement)
-    {
-        _interactionContainer.Clear();
-        _interactionContainer.Add(interactionElement);
-        _currentInteractionElement = interactionElement;
-        _interactionContainer.visible = true;
-    }
-
-    public void ClearInteraction()
-    {
-        _interactionContainer.Clear();
-        _currentInteractionElement = null;
-        _interactionContainer.visible = false;
     }
 }

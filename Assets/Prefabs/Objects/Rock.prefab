@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 591315399217211343}
   - component: {fileID: 591315399217211340}
   - component: {fileID: 591315399217211341}
+  - component: {fileID: 3318651332618028554}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -124,3 +125,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hiddenColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+--- !u!114 &3318651332618028554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591315399217211331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000005d20a75bff37da4a153503237f977abd1f96918c
+  m_ShapePath:
+  - {x: -1.8098993, y: 0.034561634, z: 0}
+  - {x: 1.8250399, y: -0.009460449, z: 0}
+  - {x: 0.7244959, y: 0.95064044, z: 0}
+  - {x: -0.9514742, y: 1.2147715, z: 0}
+  m_ShapePathHash: -403963299
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -77166
