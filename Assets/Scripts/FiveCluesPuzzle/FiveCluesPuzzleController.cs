@@ -19,6 +19,15 @@ public class FiveCluesPuzzleController : MonoBehaviour
     public string meatButtonValue;
     public string riceButtonValue;
 
+    public int unitIndex;
+    public string tspButtonValue;
+    public string tblspButtonValue;
+    public string cupButtonValue;
+
+    public int quantityIndex;
+    public string fifteenButtonValue;
+    public string twentyButtonValue;
+    public string fiveButtonValue;
 
     public PuzzleItemIcon[] foodItemIcons;
     public Image wineButtonImage;
@@ -28,12 +37,18 @@ public class FiveCluesPuzzleController : MonoBehaviour
     public Image riceButtonImage;
     public Text riceButtonText;
 
-    public Button tspButton;
-    public Button tblspButton;
-    public Button cupButton;
-    public Button fifteenButton;
-    public Button twentyButton;
-    public Button fiveButton;
+    public PuzzleItemIcon[] unitItemIcons;
+    public Image tspButtonImage;
+    public Text tspButtonText;
+    public Image tblspButtonImage;
+    public Text tblspButtonText;
+    public Image cupButtonImage;
+    public Text cupButtonText;
+
+    public PuzzleItemIcon[] quantityItemIcons;
+    public Image fifteenButtonImage;
+    public Image twentyButtonImage;
+    public Image fiveButtonImage;
 
     void OnEnable()
     {
@@ -51,7 +66,7 @@ public class FiveCluesPuzzleController : MonoBehaviour
         
     }
 
-    public void DoPlayerInput(string buttonName)
+    public void FoodPlayerInput(string buttonName)
     {
         switch (buttonName)
         {
@@ -63,6 +78,44 @@ public class FiveCluesPuzzleController : MonoBehaviour
                 break;
             case "riceButton":
                 CycleThroughFood("riceButton");
+                break;
+            default:
+                print("no button found.");
+                break;
+        }
+    }
+
+    public void UnitPlayerInput(string buttonName)
+    {
+        switch (buttonName)
+        {
+            case "tspButton":
+                CycleThroughUnit("tspButton");
+                break;
+            case "tblspButton":
+                CycleThroughUnit("tblspButton");
+                break;
+            case "cupButton":
+                CycleThroughUnit("cupButton");
+                break;
+            default:
+                print("no button found.");
+                break;
+        }
+    }
+
+    public void QuantityPlayerInput(string buttonName)
+    {
+        switch (buttonName)
+        {
+            case "fifteenButton":
+                CycleThroughQuantity("fifteenButton");
+                break;
+            case "twentyButton":
+                CycleThroughQuantity("twentyButton");
+                break;
+            case "fiveButton":
+                CycleThroughQuantity("fiveButton");
                 break;
             default:
                 print("no button found.");
@@ -247,7 +300,365 @@ public class FiveCluesPuzzleController : MonoBehaviour
         }
     }
 
-    public bool CheckFoodItemAlreadyUsed(string itemName)
+    public void CycleThroughUnit(string buttonName)
+    {
+        if (buttonName == "tspButton")
+        {
+
+            switch (unitIndex)
+            {
+                case 0:
+                    unitIndex = 1;
+                    CycleThroughUnit(buttonName);
+                    break;
+                case 1:
+                    if (CheckUnitItemAlreadyUsed("tblsp"))
+                    {
+                        unitIndex = 2;
+                        CycleThroughUnit(buttonName);
+                        return;
+                    }
+
+                    tspButtonImage.sprite = unitItemIcons[1].iconSprite;
+                    tspButtonValue = unitItemIcons[1].itemValue;
+                    tspButtonText.text = unitItemIcons[1].itemName;
+
+                    break;
+                case 2:
+                    if (CheckUnitItemAlreadyUsed("tsp"))
+                    {
+                        unitIndex = 3;
+                        CycleThroughUnit(buttonName);
+                        return;
+                    }
+
+                    tspButtonImage.sprite = unitItemIcons[2].iconSprite;
+                    tspButtonValue = unitItemIcons[2].itemValue;
+                    tspButtonText.text = unitItemIcons[2].itemName;
+                    
+                    break;
+                case 3:
+                    if (CheckUnitItemAlreadyUsed("cup"))
+                    {
+                        if (tspButtonValue == "" || tspButtonValue == null)
+                        {
+                            unitIndex = 1;
+                            CycleThroughUnit(buttonName);
+                            return;
+                        }
+
+                        unitIndex = 0;
+                        tspButtonImage.sprite = unitItemIcons[0].iconSprite;
+                        tspButtonValue = unitItemIcons[0].itemValue;
+                        tspButtonText.text = unitItemIcons[0].itemValue;
+                        return;
+                    }
+                    tspButtonImage.sprite = unitItemIcons[3].iconSprite;
+                    tspButtonValue = unitItemIcons[3].itemValue;
+                    tspButtonText.text = unitItemIcons[3].itemName;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (buttonName == "tblspButton")
+        {
+
+            switch (unitIndex)
+            {
+                case 0:
+                    unitIndex = 1;
+                    CycleThroughUnit(buttonName);
+                    break;
+                case 1:
+                    if (CheckUnitItemAlreadyUsed("tblsp"))
+                    {
+                        unitIndex = 2;
+                        CycleThroughUnit(buttonName);
+                        return;
+                    }
+
+                    tblspButtonImage.sprite = unitItemIcons[1].iconSprite;
+                    tblspButtonValue = unitItemIcons[1].itemValue;
+                    tblspButtonText.text = unitItemIcons[1].itemName;
+
+                    break;
+                case 2:
+                    if (CheckUnitItemAlreadyUsed("tsp"))
+                    {
+                        unitIndex = 3;
+                        CycleThroughUnit(buttonName);
+                        return;
+                    }
+
+                    tblspButtonImage.sprite = unitItemIcons[2].iconSprite;
+                    tblspButtonValue = unitItemIcons[2].itemValue;
+                    tblspButtonText.text = unitItemIcons[2].itemName;
+                    
+                    break;
+                case 3:
+                    if (CheckUnitItemAlreadyUsed("cup"))
+                    {
+                        if (tblspButtonValue == "" || tblspButtonValue == null)
+                        {
+                            unitIndex = 1;
+                            CycleThroughUnit(buttonName);
+                            return;
+                        }
+
+                        unitIndex = 0;
+                        tblspButtonImage.sprite = unitItemIcons[0].iconSprite;
+                        tblspButtonValue = unitItemIcons[0].itemValue;
+                        tblspButtonText.text = unitItemIcons[0].itemValue;
+                        return;
+                    }
+                    tblspButtonImage.sprite = unitItemIcons[3].iconSprite;
+                    tblspButtonValue = unitItemIcons[3].itemValue;
+                    tblspButtonText.text = unitItemIcons[3].itemName;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (buttonName == "cupButton")
+        {
+
+            switch (unitIndex)
+            {
+                case 0:
+                    unitIndex = 1;
+                    CycleThroughUnit(buttonName);
+                    break;
+                case 1:
+                    if (CheckUnitItemAlreadyUsed("tsp"))
+                    {
+                        unitIndex = 2;
+                        CycleThroughUnit(buttonName);
+                        return;
+                    }
+
+                    cupButtonImage.sprite = unitItemIcons[1].iconSprite;
+                    cupButtonValue = unitItemIcons[1].itemValue;
+                    cupButtonText.text = unitItemIcons[1].itemName;
+
+                    break;
+                case 2:
+                    if (CheckUnitItemAlreadyUsed("tblsp"))
+                    {
+                        unitIndex = 3;
+                        CycleThroughUnit(buttonName);
+                        return;
+                    }
+
+                    cupButtonImage.sprite = unitItemIcons[2].iconSprite;
+                    cupButtonValue = unitItemIcons[2].itemValue;
+                    cupButtonText.text = unitItemIcons[2].itemName;
+                    break;
+                case 3:
+                    if (CheckUnitItemAlreadyUsed("cup"))
+                    {
+                        if (cupButtonValue == "" || cupButtonValue == null)
+                        {
+                            unitIndex = 1;
+                            CycleThroughUnit(buttonName);
+                            return;
+                        }
+
+                        unitIndex = 0;
+                        cupButtonImage.sprite = unitItemIcons[0].iconSprite;
+                        cupButtonValue = unitItemIcons[0].itemValue;
+                        cupButtonText.text = unitItemIcons[0].itemValue;
+                        return;
+                    }
+                    cupButtonImage.sprite = unitItemIcons[3].iconSprite;
+                    cupButtonValue = unitItemIcons[3].itemValue;
+                    cupButtonText.text = unitItemIcons[3].itemName;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void CycleThroughQuantity(string buttonName)
+    {
+        if (buttonName == "fifteenButton")
+        {
+
+            switch (quantityIndex)
+            {
+                case 0:
+                    quantityIndex = 1;
+                    CycleThroughQuantity(buttonName);
+                    break;
+                case 1:
+                    if (CheckQuantityItemAlreadyUsed("twenty"))
+                    {
+                        quantityIndex = 2;
+                        CycleThroughQuantity(buttonName);
+                        return;
+                    }
+
+                    fifteenButtonImage.sprite = quantityItemIcons[1].iconSprite;
+                    fifteenButtonValue = quantityItemIcons[1].itemValue;
+
+                    break;
+                case 2:
+                    if (CheckQuantityItemAlreadyUsed("fifteen"))
+                    {
+                        quantityIndex = 3;
+                        CycleThroughQuantity(buttonName);
+                        return;
+                    }
+
+                    fifteenButtonImage.sprite = quantityItemIcons[2].iconSprite;
+                    fifteenButtonValue = quantityItemIcons[2].itemValue;
+                    
+                    break;
+                case 3:
+                    if (CheckQuantityItemAlreadyUsed("five"))
+                    {
+                        if (fifteenButtonValue == "" || fifteenButtonValue == null)
+                        {
+                            quantityIndex = 1;
+                            CycleThroughQuantity(buttonName);
+                            return;
+                        }
+
+                        quantityIndex = 0;
+                        fifteenButtonImage.sprite = quantityItemIcons[0].iconSprite;
+                        fifteenButtonValue = quantityItemIcons[0].itemValue;
+
+                        return;
+                    }
+                    fifteenButtonImage.sprite = quantityItemIcons[3].iconSprite;
+                    fifteenButtonValue = quantityItemIcons[3].itemValue;
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (buttonName == "twentyButton")
+        {
+
+            switch (quantityIndex)
+            {
+                case 0:
+                    quantityIndex = 1;
+                    CycleThroughQuantity(buttonName);
+                    break;
+                case 1:
+                    if (CheckQuantityItemAlreadyUsed("twenty"))
+                    {
+                        quantityIndex = 2;
+                        CycleThroughQuantity(buttonName);
+                        return;
+                    }
+
+                    twentyButtonImage.sprite = quantityItemIcons[1].iconSprite;
+                    twentyButtonValue = quantityItemIcons[1].itemValue;
+
+                    break;
+                case 2:
+                    if (CheckQuantityItemAlreadyUsed("fifteen"))
+                    {
+                        quantityIndex = 3;
+                        CycleThroughQuantity(buttonName);
+                        return;
+                    }
+
+                    twentyButtonImage.sprite = quantityItemIcons[2].iconSprite;
+                    twentyButtonValue = quantityItemIcons[2].itemValue;
+
+                    break;
+                case 3:
+                    if (CheckQuantityItemAlreadyUsed("five"))
+                    {
+                        if (twentyButtonValue == "" || twentyButtonValue == null)
+                        {
+                            quantityIndex = 1;
+                            CycleThroughQuantity(buttonName);
+                            return;
+                        }
+
+                        quantityIndex = 0;
+                        twentyButtonImage.sprite = quantityItemIcons[0].iconSprite;
+                        twentyButtonValue = quantityItemIcons[0].itemValue;
+
+                        return;
+                    }
+                    twentyButtonImage.sprite = quantityItemIcons[3].iconSprite;
+                    twentyButtonValue = quantityItemIcons[3].itemValue;
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (buttonName == "fiveButton")
+        {
+
+            switch (quantityIndex)
+            {
+                case 0:
+                    quantityIndex = 1;
+                    CycleThroughQuantity(buttonName);
+                    break;
+                case 1:
+                    if (CheckQuantityItemAlreadyUsed("twenty"))
+                    {
+                        quantityIndex = 2;
+                        CycleThroughQuantity(buttonName);
+                        return;
+                    }
+
+                    fiveButtonImage.sprite = quantityItemIcons[1].iconSprite;
+                    fiveButtonValue = quantityItemIcons[1].itemValue;
+
+                    break;
+                case 2:
+                    if (CheckQuantityItemAlreadyUsed("fifteen"))
+                    {
+                        quantityIndex = 3;
+                        CycleThroughQuantity(buttonName);
+                        return;
+                    }
+
+                    fiveButtonImage.sprite = quantityItemIcons[2].iconSprite;
+                    fiveButtonValue = quantityItemIcons[2].itemValue;
+                    
+                    break;
+                case 3:
+                    if (CheckQuantityItemAlreadyUsed("five"))
+                    {
+                        if (fiveButtonValue == "" || fiveButtonValue == null)
+                        {
+                            quantityIndex = 1;
+                            CycleThroughQuantity(buttonName);
+                            return;
+                        }
+
+                        quantityIndex = 0;
+                        fiveButtonImage.sprite = quantityItemIcons[0].iconSprite;
+                        fiveButtonValue = quantityItemIcons[0].itemValue;
+
+                        return;
+                    }
+                    fiveButtonImage.sprite = quantityItemIcons[3].iconSprite;
+                    fiveButtonValue = quantityItemIcons[3].itemValue;
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+        public bool CheckFoodItemAlreadyUsed(string itemName)
     {
         switch (itemName)
         {
@@ -276,16 +687,80 @@ public class FiveCluesPuzzleController : MonoBehaviour
         return false;
     }
 
+    public bool CheckUnitItemAlreadyUsed(string itemName)
+    {
+        switch (itemName)
+        {
+            case "tsp":
+                if (tspButtonValue == "tsp" || tblspButtonValue == "tsp" || cupButtonValue == "tsp")
+                {
+                    return true;
+                }
+                break;
+            case "tblsp":
+                if (tspButtonValue == "tblsp" || tblspButtonValue == "tblsp" || cupButtonValue == "tblsp")
+                {
+                    return true;
+                }
+                break;
+            case "cup":
+                if (tspButtonValue == "cup" || tblspButtonValue == "cup" || cupButtonValue == "cup")
+                {
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
+    public bool CheckQuantityItemAlreadyUsed(string itemName)
+    {
+        switch (itemName)
+        {
+            case "fifteen":
+                if (fifteenButtonValue == "fifteen" || twentyButtonValue == "fifteen" || fiveButtonValue == "fifteen")
+                {
+                    return true;
+                }
+                break;
+            case "twenty":
+                if (fifteenButtonValue == "twenty" || twentyButtonValue == "twenty" || fiveButtonValue == "twenty")
+                {
+                    return true;
+                }
+                break;
+            case "five":
+                if (fifteenButtonValue == "five" || twentyButtonValue == "five" || fiveButtonValue == "five")
+                {
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
     public void SubmitPotion()
     {
-        if(wineButtonValue == "wine" && meatButtonValue == "meat" && riceButtonValue == "rice")
         {
-            print("you win");
-        } else
-        {
-            print("wrong potion");
+            if (wineButtonValue == "wine" && meatButtonValue == "meat" && riceButtonValue == "rice"
+                && tspButtonValue == "tsp" && tblspButtonValue == "tblsp" && cupButtonValue == "cup"
+                && fifteenButtonValue == "fifteen" && twentyButtonValue == "twenty" && fiveButtonValue == "five")
+            {
+                print("you win");
+            }
+            else
+            {
+                print("wrong potion");
+            }
         }
     }
+
 
     public void ResetPuzzle()
     {
@@ -298,5 +773,22 @@ public class FiveCluesPuzzleController : MonoBehaviour
         riceButtonValue = foodItemIcons[0].itemValue;
         riceButtonImage.sprite = foodItemIcons[0].iconSprite;
         riceButtonText.text = foodItemIcons[0].itemValue;
+
+        tspButtonValue = unitItemIcons[0].itemValue;
+        tspButtonImage.sprite = unitItemIcons[0].iconSprite;
+        tspButtonText.text = unitItemIcons[0].itemValue;
+        tblspButtonValue = unitItemIcons[0].itemValue;
+        tblspButtonImage.sprite = unitItemIcons[0].iconSprite;
+        tblspButtonText.text = unitItemIcons[0].itemValue;
+        cupButtonValue = unitItemIcons[0].itemValue;
+        cupButtonImage.sprite = unitItemIcons[0].iconSprite;
+        cupButtonText.text = unitItemIcons[0].itemValue;
+
+        fifteenButtonValue = quantityItemIcons[0].itemValue;
+        fifteenButtonImage.sprite = quantityItemIcons[0].iconSprite;
+        twentyButtonValue = quantityItemIcons[0].itemValue;
+        twentyButtonImage.sprite = quantityItemIcons[0].iconSprite;
+        fiveButtonValue = quantityItemIcons[0].itemValue;
+        fiveButtonImage.sprite = quantityItemIcons[0].iconSprite;
     }
 }

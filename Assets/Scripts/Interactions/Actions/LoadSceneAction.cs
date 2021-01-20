@@ -49,6 +49,11 @@ namespace Interactions.Actions
 
         private void LoadScene()
         {
+            var saveManager = FindObjectOfType<SceneSaveManager>();
+            if (saveManager != null)
+            {
+                saveManager.Persist();
+            }
             GameManager.instance.startPointName = StartPointName;
             print(GameManager.instance.startPointName);
             SceneManager.LoadScene(SceneName);

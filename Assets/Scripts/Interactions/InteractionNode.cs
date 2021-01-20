@@ -5,8 +5,8 @@ namespace Interactions
 {
     public abstract class InteractionNode : MonoBehaviour
     {
-        [Tooltip("Whether this is the active node. Purely for readout in the inspector")]
-        [SerializeField] private bool _isCurrent;
+        [Tooltip("Whether this is the active node. Purely for readout in the inspector")] [SerializeField]
+        private bool _isCurrent;
 
         /**
          * Whether this is the current node. If this is false, the node should do nothing.
@@ -17,8 +17,8 @@ namespace Interactions
             private set => _isCurrent = value;
         }
 
-        public InteractionSaveManager SaveManager;
-        
+        [NonSerialized] public InteractionManager Manager;
+
         /**
          * Whether entering this node should be delayed until LateUpdate. This is used to prevent multiple triggers
          * occurring on a single frame.
@@ -54,6 +54,7 @@ namespace Interactions
          * So I have poor-man's single-run OnEnable
          */
         private bool _hasEnabled;
+
         protected virtual void OnEnable()
         {
             if (!_hasEnabled)
@@ -62,12 +63,13 @@ namespace Interactions
                 {
                     collider.enabled = false;
                 }
+
                 InitializeNode();
             }
 
             _hasEnabled = true;
         }
-        
+
         protected virtual void Start()
         {
             _isCurrent = false;
@@ -88,7 +90,7 @@ namespace Interactions
                 return;
             OnExitNode();
             IsCurrent = false;
-            SaveManager.CurrentNode = null;
+            Manager.CurrentNode = null;
         }
 
         public void EnterNode()
@@ -96,7 +98,7 @@ namespace Interactions
             if (IsCurrent)
                 return;
             IsCurrent = true;
-            SaveManager.CurrentNode = this;
+            Manager.CurrentNode = this;
             OnEnterNode();
         }
 
@@ -113,7 +115,7 @@ namespace Interactions
             {
                 return;
             }
-            
+
             if (next.EnterLate)
             {
                 next._delayedEnter = true;

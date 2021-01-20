@@ -83,6 +83,11 @@ namespace Inventory
 
         public IInventory.ChangeListener OnChange { get; set; } = () => {};
 
+        public void Clear()
+        {
+            _stacks.Clear();
+        }
+
         private void Clean()
         {
             _stacks.RemoveAll(stack => stack.Count <= 0);

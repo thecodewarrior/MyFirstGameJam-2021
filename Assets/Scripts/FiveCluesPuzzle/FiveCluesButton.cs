@@ -21,8 +21,18 @@ public class FiveCluesButton : MonoBehaviour
         
     }
 
-    public void DoPlayerInput()
+    public void FoodPlayerInput()
     {
-        fiveCluesPuzzleController.DoPlayerInput(buttonName);
+        fiveCluesPuzzleController.FoodPlayerInput(buttonName);
+    }
+
+    public void UnitPlayerInput()
+    {
+        fiveCluesPuzzleController.UnitPlayerInput(buttonName);
+    }
+
+    public void QuantityPlayerInput()
+    {
+        fiveCluesPuzzleController.QuantityPlayerInput(buttonName);
     }
 }

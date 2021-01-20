@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TempScenes/Save Testing Bouncer.unity
     guid: 87f4ee8f657b242ab88955ce5407b9f7
+  - enabled: 1
+    path: Assets/Scenes/Scene_01.unity
+    guid: 03d87c7538d2a4e20b8940f0ead69dae
   m_configObjects: {}

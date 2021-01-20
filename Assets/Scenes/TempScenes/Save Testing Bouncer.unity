@@ -973,6 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146945985}
+  - component: {fileID: 1146945986}
   m_Layer: 0
   m_Name: Back to right
   m_TagString: Untagged
@@ -988,7 +989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146945984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.37, y: -1.58, z: 0}
+  m_LocalPosition: {x: -5.48, y: -1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 500978138}
@@ -997,6 +998,22 @@ Transform:
   m_Father: {fileID: 2073371483}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146945986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146945984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729bd0407e864517801bcd8e16579180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeObjects: []
+  _enabledBehaviors: []
+  _visibleRenderers: []
+  _saveId: a
 --- !u!1 &1154578678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1738832276}
+  - component: {fileID: 1738832277}
   m_Layer: 0
   m_Name: Back to left
   m_TagString: Untagged
@@ -1553,6 +1571,22 @@ Transform:
   m_Father: {fileID: 2073371483}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738832277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738832275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729bd0407e864517801bcd8e16579180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeObjects: []
+  _enabledBehaviors: []
+  _visibleRenderers: []
+  _saveId: 
 --- !u!1 &1747494041
 GameObject:
   m_ObjectHideFlags: 3
@@ -1933,11 +1967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804231233294005236, guid: f15655a896cf44c9b970caa6bfc8c6b8, type: 3}
       propertyPath: SceneName
-      value: Save Testing
+      value: Scene_00
       objectReference: {fileID: 0}
     - target: {fileID: 4804231233294005236, guid: f15655a896cf44c9b970caa6bfc8c6b8, type: 3}
       propertyPath: StartPointName
-      value: right_start
+      value: forest_west
       objectReference: {fileID: 0}
     - target: {fileID: 5144667013137001474, guid: f15655a896cf44c9b970caa6bfc8c6b8, type: 3}
       propertyPath: m_RootOrder

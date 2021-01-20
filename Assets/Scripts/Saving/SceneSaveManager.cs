@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneSaveManager : MonoBehaviour
 {
@@ -32,16 +33,13 @@ public class SceneSaveManager : MonoBehaviour
      */
     public void Persist()
     {
+        var scene = gameObject.scene.name;
         foreach (var persistentObject in FindPersistentObjects())
         {
             var id = persistentObject.SaveID;
-            if (id == null)
+            if (!string.IsNullOrEmpty(id))
             {
-                Debug.Log($"Object has null id: {persistentObject}");
-            }
-            else
-            {
-                GlobalSaveManager.Data.SetState(id, persistentObject.GetSaveState());
+                GlobalSaveManager.Data.SetState(scene + "_" + id, persistentObject.GetSaveState());
             }
         }
     }
@@ -52,9 +50,14 @@ public class SceneSaveManager : MonoBehaviour
      */
     public void Load()
     {
+        var scene = gameObject.scene.name;
         foreach (var persistentObject in FindPersistentObjects())
         {
-            persistentObject.LoadSaveState(GlobalSaveManager.Data.GetState(persistentObject.SaveID));
+            var id = persistentObject.SaveID;
+            if (!string.IsNullOrEmpty(id))
+            {
+                persistentObject.LoadSaveState(GlobalSaveManager.Data.GetState(scene + "_" + id));
+            }
         }
     }
 }

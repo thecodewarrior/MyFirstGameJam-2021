@@ -34,24 +34,23 @@ public class Health : MonoBehaviour
 
     public void DamagePlayer()
     {
-        if (isInvunerable)
+        if (isInvunerable || GlobalPlayerData.Health <= 0)
         {
             return;
         }
-
        
+        GlobalPlayerData.DoDamage(1);
 
-        if(GlobalPlayerData.Health > 0)
+        if(GlobalPlayerData.Health <= 0)
         {
-            //myAudioSource.Play();
-            GlobalPlayerData.DoDamage(1);
-            isInvunerable = true;
-            Invoke("MakePlayerVulnerable", invincibilityTime);
-            StartCoroutine("FlickerSprite");
+            levelManager.KillPlayer();
         }
         else
         {
-            levelManager.KillPlayer();
+            //myAudioSource.Play();
+            isInvunerable = true;
+            Invoke("MakePlayerVulnerable", invincibilityTime);
+            StartCoroutine("FlickerSprite");
         }
         
     }

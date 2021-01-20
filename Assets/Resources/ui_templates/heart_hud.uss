@@ -1,0 +1,5 @@
+.heart {
+    width: 125px;
+    height: 125px;
+    margin-right: 15px;
+}

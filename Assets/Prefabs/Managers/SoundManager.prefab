@@ -55,7 +55,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
   - name: scene00_music
-    clip: {fileID: 8300000, guid: 7c6d1519498294c08aab9d18a7a4206c, type: 3}
+    clip: {fileID: 8300000, guid: e86290ce200d0424aa0d7e25104917c5, type: 3}
     volume: 0.2
     volumeVariance: 0
     pitch: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
   - name: forest_music
-    clip: {fileID: 8300000, guid: 0bac18c9de8774477993a94fa43b2808, type: 3}
+    clip: {fileID: 8300000, guid: 68571c6b501f741ad995860bca7870fd, type: 3}
     volume: 0.2
     volumeVariance: 0
     pitch: 1

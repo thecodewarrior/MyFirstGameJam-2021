@@ -1,5 +1,8 @@
+using UnityEngine;
+
 namespace Interactions
 {
+    [AddComponentMenu("Interaction/Save Point")]
     public class SaveNode : InteractionNode
     {
         public string ID;
@@ -7,8 +10,8 @@ namespace Interactions
 
         protected override void OnEnterNode()
         {
-            if(SaveManager != null)
-                SaveManager.MarkSavePoint(this);
+            if(Manager != null)
+                Manager.MarkSavePoint(this);
             AdvanceTo(Next);
         }
     }

@@ -9,5 +9,10 @@ namespace Interactions
     public class StartNode : InteractionNode
     {
         public InteractionNode Next;
+
+        protected override void OnEnterNode()
+        {
+            AdvanceTo(Next);
+        }
     }
 }

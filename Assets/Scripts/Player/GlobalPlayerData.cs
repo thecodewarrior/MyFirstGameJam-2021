@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using Inventory;
 
 public static class GlobalPlayerData
 {
+    public static int MaxHealth = 3;
     public static int Health { get; private set; }
-    public static IInventory Inventory = new BasicInventory();
+    private static BasicInventory _inventory = new BasicInventory();
+    public static IInventory Inventory => _inventory;
 
     public static void DoDamage(int amount)
     {
@@ -16,7 +20,8 @@ public static class GlobalPlayerData
 
     private static void ResetSaveState()
     {
-        Health = 3;
+        Health = MaxHealth;
+        _inventory.Clear();
     }
     
     static GlobalPlayerData()
@@ -30,13 +35,19 @@ public static class GlobalPlayerData
     {
         return new SaveState
         {
-            Health = Health
+            Health = Health,
+            Inventory = _inventory.Stacks.Select(e => e).ToList() // copy the list
         };
     }
 
     private static void LoadSaveState(SaveState state)
     {
         Health = state.Health;
+        _inventory.Clear();
+        foreach (var stack in state.Inventory)
+        {
+            _inventory.InsertItem(stack.Item, stack.Count);
+        }
     }
 
     public static void Persist() => GlobalSaveManager.Data.SetState("global", GetSaveState());
@@ -58,6 +69,7 @@ public static class GlobalPlayerData
     public class SaveState : AbstractSaveState
     {
         public int Health;
+        public List<InventoryItemStack> Inventory;
     }
 
     #endregion

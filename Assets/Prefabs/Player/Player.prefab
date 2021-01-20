@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 6504062553134366895}
   - component: {fileID: 6504062553134366893}
   - component: {fileID: 3726243738577759906}
-  - component: {fileID: 5404848981462173661}
   - component: {fileID: 4765283898874983006}
   m_Layer: 6
   m_Name: Player
@@ -219,7 +218,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6f0eac26733b0482eb554d6e7d7ead8c, type: 3}
   - {fileID: 8300000, guid: d62213880fe42460c84069736b7f0145, type: 3}
   - {fileID: 8300000, guid: c6aee0ae46c9041d89f7090d27bdd1a6, type: 3}
-  swampSFX: []
+  swampSFX:
+  - {fileID: 8300000, guid: e67a16cc19fef4a389471018602660f3, type: 3}
+  - {fileID: 8300000, guid: 752a758d68d2a4c0da0b03cf21eb14b5, type: 3}
+  - {fileID: 8300000, guid: df4d30c7f89844a658633a116226127b, type: 3}
+  - {fileID: 8300000, guid: f9fcd25d2e4ac40db958f8812aca4e52, type: 3}
 --- !u!114 &6504062553134366893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,18 +269,6 @@ MonoBehaviour:
   invincibilityTime: 2
   filckerInterval: 0.1
   isInvunerable: 0
---- !u!114 &5404848981462173661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6504062553134366889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a203c0265655e4f8bbecde2e9eb25056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &4765283898874983006
 AudioSource:
   m_ObjectHideFlags: 0
