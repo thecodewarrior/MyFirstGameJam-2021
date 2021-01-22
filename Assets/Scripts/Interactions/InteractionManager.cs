@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace Interactions
@@ -64,16 +65,18 @@ namespace Interactions
             return new SaveState
             {
                 LatestSavePoint = savePoint,
-                ActiveObjects = _activeObjects.Select(e => e.activeSelf).ToList(),
-                EnabledBehaviors = _enabledBehaviors.Select(e => e.enabled).ToList(),
-                VisibleRenderers = _visibleRenderers.Select(e => e.enabled).ToList(),
+                ActiveObjects = _activeObjects.Select(e => e != null && e.activeSelf).ToList(),
+                EnabledBehaviors = _enabledBehaviors.Select(e => e != null && e.enabled).ToList(),
+                VisibleRenderers = _visibleRenderers.Select(e => e != null && e.enabled).ToList(),
                 SavedTransforms = _savedTransforms.Select(t =>
-                    new SavedTransform
-                    {
-                        LocalPosition = t.localPosition,
-                        LocalRotation = t.localRotation,
-                        LocalScale = t.localScale,
-                    }
+                    t == null
+                        ? new SavedTransform()
+                        : new SavedTransform
+                        {
+                            LocalPosition = t.localPosition,
+                            LocalRotation = t.localRotation,
+                            LocalScale = t.localScale,
+                        }
                 ).ToList()
             };
         }
@@ -83,7 +86,8 @@ namespace Interactions
             ApplySaveState(saveState as SaveState ?? InitialSaveState);
         }
 
-        private void ApplySaveState(SaveState state) {
+        private void ApplySaveState(SaveState state)
+        {
             if (CurrentNode != null)
                 CurrentNode.ExitNode();
 
@@ -103,7 +107,7 @@ namespace Interactions
             {
                 _visibleRenderers[i].enabled = state.VisibleRenderers[i];
             }
-            
+
             for (var i = 0; i < Math.Min(_savedTransforms.Count, state.SavedTransforms.Count); i++)
             {
                 _savedTransforms[i].localPosition = state.SavedTransforms[i].LocalPosition;

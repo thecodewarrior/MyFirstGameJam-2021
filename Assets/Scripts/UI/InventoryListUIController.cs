@@ -19,7 +19,7 @@ public class InventoryListUIController : AbstractUIController
     protected override void Bind()
     {
         _itemListView = Root.Q<ListView>("item_list");
-        _itemListView.itemHeight = 50;
+        _itemListView.itemHeight = 75;
 
         _itemListView.makeItem = () => _slotTemplate.Instantiate();
         _itemListView.bindItem = (element, i) => { BindingUtils.ItemStack.Bind(element, GlobalPlayerData.Inventory.Stacks[i]); };
@@ -57,14 +57,14 @@ public class InventoryListUIController : AbstractUIController
 
     private void Update()
     {
+        if (Active && (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Inventory")))
+        {
+            Manager.Pop();
+        }
+    
         if (!UIManager.HasInputFocus && Input.GetButtonDown("Inventory"))
         {
             Manager.Push(this);
-        }
-
-        if (Active && Input.GetButtonDown("Cancel"))
-        {
-            Manager.Pop();
         }
     }
 }

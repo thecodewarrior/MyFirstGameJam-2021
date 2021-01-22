@@ -50,7 +50,6 @@ public class BatMovement : BezierFollow
             else
             {
                 routeToGo = 0;
-                print("stopping attack");
                 batController.StopAttack();
             }
 

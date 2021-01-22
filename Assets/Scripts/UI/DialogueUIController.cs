@@ -105,6 +105,6 @@ public class DialogueUIController : AbstractUIController
     {
         StopAllCoroutines();
         isTyping = false;
-        _dialogueText.text = _currentDialogueLine.Text;
+        _dialogueText.text = _currentDialogueLine.Text.Replace("§", "");
     }
 }

@@ -111,12 +111,12 @@ SpriteRenderer:
   m_SortingLayerID: 587412757
   m_SortingLayer: 3
   m_SortingOrder: 10
-  m_Sprite: {fileID: -5937766766644145194, guid: a2b8156a7325b4ec6b3a212f615bce03, type: 3}
+  m_Sprite: {fileID: -8918611355479966697, guid: cac6374fcdece4312bf013a9ecfb8e7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.66, y: 10}
+  m_Size: {x: 10.01, y: 9.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -138,9 +138,9 @@ BoxCollider2D:
   m_Offset: {x: -0.113586426, y: 3.6289754}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5372973, y: 0.016216217}
-    oldSize: {x: 9.25, y: 9.25}
-    newSize: {x: 6.66, y: 10}
+    pivot: {x: 0.5, y: 0.06}
+    oldSize: {x: 10.01, y: 9.89}
+    newSize: {x: 10.01, y: 9.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -213,16 +213,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 62fb35a17e0084123887e80136af66a2, type: 3}
   - {fileID: 8300000, guid: 8050a069a17db4642851a0398131fd23, type: 3}
   - {fileID: 8300000, guid: 49225cb00dc724d288b48a33c5233db4, type: 3}
-  gravelSFX:
-  - {fileID: 8300000, guid: 58349c79c53474ad1ac9c5be9fc08271, type: 3}
-  - {fileID: 8300000, guid: 6f0eac26733b0482eb554d6e7d7ead8c, type: 3}
-  - {fileID: 8300000, guid: d62213880fe42460c84069736b7f0145, type: 3}
-  - {fileID: 8300000, guid: c6aee0ae46c9041d89f7090d27bdd1a6, type: 3}
   swampSFX:
   - {fileID: 8300000, guid: e67a16cc19fef4a389471018602660f3, type: 3}
   - {fileID: 8300000, guid: 752a758d68d2a4c0da0b03cf21eb14b5, type: 3}
   - {fileID: 8300000, guid: df4d30c7f89844a658633a116226127b, type: 3}
   - {fileID: 8300000, guid: f9fcd25d2e4ac40db958f8812aca4e52, type: 3}
+  stoneSFX: []
 --- !u!114 &6504062553134366893
 MonoBehaviour:
   m_ObjectHideFlags: 0

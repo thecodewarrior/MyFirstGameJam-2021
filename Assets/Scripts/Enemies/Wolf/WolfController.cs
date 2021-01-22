@@ -13,6 +13,7 @@ public class WolfController : MonoBehaviour
     protected bool isFadingMusic;
     protected DetectPlayerForAction detectPlayerForAction;
     protected bool actionTried;
+    protected AudioSource audioSource;
 
     public int actionNumber;
 
@@ -22,14 +23,14 @@ public class WolfController : MonoBehaviour
     public bool placeWolfAtEastPoint;
     public float timeBetweenActivationMin;
     public float timeBetweenActivationMax;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         wolfMovement = wolf.GetComponent<WolfMovement>();
         detectPlayer = GetComponentInChildren<DetectPlayer>();
         detectPlayerForAction = GetComponentInChildren<DetectPlayerForAction>();
-
+        audioSource = GetComponent<AudioSource>();
         if (placeWolfAtEastPoint)
         {
             StartWolfAtEast();
@@ -117,6 +118,7 @@ public class WolfController : MonoBehaviour
     {
         previousMusicPlaying = SoundManager.instance.currentMusicPlaying;
         wolf.SetActive(true);
+        PlayWolfHowl();
         if (destination == westPoint)
         {
             wolfMovement.ChangeStateToWalking();
@@ -221,6 +223,11 @@ public class WolfController : MonoBehaviour
             isFadingMusic = false;
             SoundManager.instance.PlayMusic(previousMusicPlaying);
         }     
+    }
+
+    public void PlayWolfHowl()
+    {
+        audioSource.Play();
     }
 
     private void OnDrawGizmos()

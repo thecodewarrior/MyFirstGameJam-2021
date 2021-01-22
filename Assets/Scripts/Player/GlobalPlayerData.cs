@@ -23,6 +23,11 @@ public static class GlobalPlayerData
         Health = MaxHealth;
         _inventory.Clear();
     }
+
+    public static void ResetHealth()
+    {
+        Health = MaxHealth;
+    }
     
     static GlobalPlayerData()
     {

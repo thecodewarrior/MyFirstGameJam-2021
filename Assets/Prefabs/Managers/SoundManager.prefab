@@ -90,4 +90,13 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
+  - name: house_music
+    clip: {fileID: 8300000, guid: 60200e544087d49c28962dd2377e6017, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
   currentMusicPlaying: 

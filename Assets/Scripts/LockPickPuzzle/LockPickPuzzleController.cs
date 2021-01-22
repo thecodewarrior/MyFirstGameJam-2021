@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Interactions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LockPickPuzzleController : MonoBehaviour
+public class LockPickPuzzleController : AbstractPuzzleController
 {
 
     protected int currentPuzzle;
@@ -102,6 +103,12 @@ public class LockPickPuzzleController : MonoBehaviour
     public void UnlockDoor()
     {
         resultText.text = "Door Unlocked!";
+        OnCompletion(true);
+    }
+
+    public void QuitPuzzle()
+    {
+        OnCompletion(false);
     }
 
     public void StartShowSolution()
@@ -209,6 +216,11 @@ public class LockPickPuzzleController : MonoBehaviour
         toolButton01Animator.SetBool("isMoving", false);
         toolButton02Animator.SetBool("isMoving", false);
         toolButton03Animator.SetBool("isMoving", false);
+    }
+
+    public override void ResetPuzzle()
+    {
+        ResetCurrentPuzzle();
     }
 
     public void ResetCurrentPuzzle()

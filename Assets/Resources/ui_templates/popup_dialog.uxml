@@ -3,7 +3,7 @@
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; padding-top: 0; padding-left: 0; padding-right: 0; padding-bottom: 0;">
         <ui:VisualElement name="dialog_box" style="width: 750px; height: 300px; flex-direction: row; margin-top: 200px;">
             <ui:VisualElement name="dialog_background" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-image: url(&apos;/Assets/Sprites/UI/Dialogue/dialogue_box.png&apos;); opacity: 0.75;" />
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="dialog" style="font-size: 35px; -unity-font-style: bold; color: rgb(0, 0, 0); white-space: normal; flex-grow: 1; margin-left: 11%; margin-top: 5%; margin-right: 11%; margin-bottom: 5%; -unity-text-align: upper-center;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="dialog" style="font-size: 83px; -unity-font-style: normal; color: rgb(0, 0, 0); white-space: normal; flex-grow: 1; margin-left: 15%; margin-top: 5%; margin-right: 15%; margin-bottom: 5%; -unity-text-align: upper-left; -unity-font: url(&apos;/Assets/Font/NaomisHand-Regular.ttf&apos;);" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

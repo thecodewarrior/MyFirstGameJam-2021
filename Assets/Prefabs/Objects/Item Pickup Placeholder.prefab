@@ -102,6 +102,7 @@ MonoBehaviour:
   _activeObjects: []
   _enabledBehaviors: []
   _visibleRenderers: []
+  _savedTransforms: []
   _saveId: 
 --- !u!1001 &6825765441288428501
 PrefabInstance:
@@ -340,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 222818178946139481, guid: fad42810202764bbc861b16c799ae04a, type: 3}
       propertyPath: Items.Array.data[0].Count
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2614889304623570350, guid: fad42810202764bbc861b16c799ae04a, type: 3}
       propertyPath: m_RootOrder

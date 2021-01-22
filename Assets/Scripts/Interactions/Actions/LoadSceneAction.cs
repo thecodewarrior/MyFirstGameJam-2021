@@ -23,6 +23,7 @@ namespace Interactions.Actions
         protected override void OnEnterNode()
         {
             _playerMovement.FreezePlayer();
+            Invoke("LoadScene", FadeTime);
             FadeOut();
         }
 
@@ -31,12 +32,6 @@ namespace Interactions.Actions
             if (_isFadingOut)
             {
                 _hud.FadeAlpha += Time.deltaTime / FadeTime;
-
-                if (_hud.FadeAlpha >= 1f)
-                {
-                    _isFadingOut = false;
-                    LoadScene();
-                }
             }
         }
 
@@ -46,13 +41,14 @@ namespace Interactions.Actions
             _hud.FadeAlpha = 0;
         }
 
-        private void LoadScene()
+        public void LoadScene()
         {
             var saveManager = FindObjectOfType<SceneSaveManager>();
             if (saveManager != null)
             {
                 saveManager.Persist();
             }
+            GlobalPlayerData.Persist();
             GameManager.instance.startPointName = StartPointName;
             print(GameManager.instance.startPointName);
             SceneManager.LoadScene(SceneName);

@@ -13,7 +13,7 @@ public class InstantKill : MonoBehaviour
     {
         if(collision.tag == "Player" && !playerMovement.isHiding && !playerMovement.isDead)
         {
-            playerHealth.KillPlayer();
+            playerHealth.InstantKillPlayer();
         }
     }
     // Start is called before the first frame update
@@ -22,11 +22,5 @@ public class InstantKill : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         levelManager = FindObjectOfType<LevelManager>();
         playerHealth = playerMovement.gameObject.GetComponent<Health>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

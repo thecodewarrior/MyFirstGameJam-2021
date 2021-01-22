@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interactions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class PuzzleItemIcon
     public string itemValue;
 }
 
-public class FiveCluesPuzzleController : MonoBehaviour
+public class FiveCluesPuzzleController : AbstractPuzzleController
 {
 
     protected int foodIndex;
@@ -435,7 +436,7 @@ public class FiveCluesPuzzleController : MonoBehaviour
                     CycleThroughUnit(buttonName);
                     break;
                 case 1:
-                    if (CheckUnitItemAlreadyUsed("tsp"))
+                    if (CheckUnitItemAlreadyUsed("tblsp"))
                     {
                         unitIndex = 2;
                         CycleThroughUnit(buttonName);
@@ -448,7 +449,7 @@ public class FiveCluesPuzzleController : MonoBehaviour
 
                     break;
                 case 2:
-                    if (CheckUnitItemAlreadyUsed("tblsp"))
+                    if (CheckUnitItemAlreadyUsed("tsp"))
                     {
                         unitIndex = 3;
                         CycleThroughUnit(buttonName);
@@ -756,16 +757,18 @@ public class FiveCluesPuzzleController : MonoBehaviour
                 && fifteenButtonValue == "fifteen" && twentyButtonValue == "twenty" && fiveButtonValue == "five")
             {
                 print("you win");
+                OnCompletion(true);
             }
             else
             {
                 print("wrong potion");
+                OnCompletion(false);
             }
         }
     }
 
 
-    public void ResetPuzzle()
+    public override void ResetPuzzle()
     {
         wineButtonValue = foodItemIcons[0].itemValue;
         wineButtonImage.sprite = foodItemIcons[0].iconSprite;

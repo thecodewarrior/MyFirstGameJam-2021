@@ -1,16 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="padding-left: 45px; padding-right: 44px; padding-top: 127px;">
-        <ui:VisualElement name="inventory_slot" style="width: 353px; height: 73px; flex-direction: row; align-items: flex-start;">
-            <ui:VisualElement name="slot_background" style="background-image: url(&apos;/Assets/Sprites/UI/inventory_slot.png&apos;); -unity-slice-left: 42; -unity-slice-right: 28; position: absolute; left: 0; top: 0; right: 0; bottom: 0; padding-bottom: 6px;" />
-            <ui:VisualElement name="item_icon" style="height: 67px; width: 67px; margin-right: 10px; justify-content: flex-end;">
-                <ui:Label text="10" display-tooltip-when-elided="true" name="item_count" style="right: -5px; bottom: -5px; position: relative; -unity-font-style: bold; -unity-text-align: upper-right; font-size: 18px;" />
-            </ui:VisualElement>
+    <Style src="Theme.uss" />
+    <ui:VisualElement name="inventory_slot" style="width: 353px; height: 73px; flex-direction: row; align-items: flex-start;">
+        <ui:VisualElement name="item_icon" style="height: 67px; width: 67px; margin-right: 10px; justify-content: flex-end;">
+            <ui:Label text="10" display-tooltip-when-elided="true" name="item_count" style="right: -5px; bottom: -5px; position: relative; -unity-font-style: bold; -unity-text-align: upper-right; font-size: 18px; color: rgba(37, 37, 37, 255);" />
         </ui:VisualElement>
-        <ui:VisualElement style="height: 100px; flex-direction: row; align-items: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-            <ui:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: flex-start; max-height: 80px;">
-                <ui:Label text="Item Name" display-tooltip-when-elided="true" name="item_name" style="font-size: 20px; -unity-font-style: bold; margin-bottom: 2px;" />
-                <ui:Label text="Item Description&#10;Line 2" display-tooltip-when-elided="true" name="item_description" style="white-space: normal; font-size: 18px;" />
-            </ui:VisualElement>
+        <ui:VisualElement name="slot_background" style="background-image: url(&apos;/Assets/Sprites/UI/inventory_slot.png&apos;); -unity-slice-left: 42; -unity-slice-right: 28; padding-bottom: 6px; flex-grow: 1; height: 73px; justify-content: center;">
+            <ui:Label text="Item Name" display-tooltip-when-elided="true" name="item_name" style="font-size: 24px; -unity-font-style: bold; color: rgba(36, 36, 36, 255); margin-left: 38px; margin-right: 16px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

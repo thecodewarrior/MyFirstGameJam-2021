@@ -8,7 +8,9 @@ public static class BindingUtils
         {
             GetCount(element).text = stack.Count == 1 ? "" : stack.Count.ToString();
             GetName(element).text = stack.Item.ItemName;
-            GetDescription(element).text = stack.Item.ItemDescription;
+            var description = GetDescription(element);
+            if (description != null) 
+                description.text = stack.Item.ItemDescription;
             element.Q("item_icon").style.backgroundImage = new StyleBackground(stack.Item.ItemIcon);
         }
 

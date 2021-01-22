@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     protected AudioSource audioSource;
     protected bool isGrounded;
     protected bool previousIsGround;
+    protected bool onWolfWakeGround;
 
     public string currentGroundType;
 
@@ -23,8 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
     public AudioClip[] grassSFX;
     public AudioClip[] woodSFX;
-    public AudioClip[] gravelSFX;
     public AudioClip[] swampSFX;
+    public AudioClip[] stoneSFX;
+    protected WolfWakeGround wolfWakeGround;
 
     float horizontalMove = 0f;
 
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         groundTypeCheck = GetComponentInChildren<GroundTypeCheck>();
         audioSource = GetComponent<AudioSource>();
+        wolfWakeGround = FindObjectOfType<WolfWakeGround>();
     }
 
     // Update is called once per frame
@@ -65,9 +68,11 @@ public class PlayerMovement : MonoBehaviour
 
         SetAnimation();
         SetGroundType();
+        CheckOnWolfWakeGround();
         if (CheckJustLanded() && horizontalMove < .01f)
         {
             PlayFootStepSFX();
+            AddToWolfWakeMeter();
         }
 
 
@@ -76,14 +81,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isFrozen)
+        if (isFrozen || isDead)
         {
-            //Move our character
-            controller.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
+            controller.FreezePlayerMovement();
         }
         else
         {
-            controller.FreezePlayerMovement();
+            //Move our character
+            controller.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
         }
 
         isJumping = false;
@@ -110,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isFalling", isFalling);
         animator.SetFloat("horizontalAxis", Mathf.Abs(horizontalMove));
 
-        if (isFrozen)
+        if (isFrozen || isDead)
         {
             animator.SetFloat("horizontalAxis", Mathf.Abs(0f));
             animator.SetBool("isCrouching", false);
@@ -155,6 +160,11 @@ public class PlayerMovement : MonoBehaviour
         }  
     }
 
+    public void CheckOnWolfWakeGround()
+    {
+        onWolfWakeGround = groundTypeCheck.isOnWolfWakeGround;
+    }
+
     public bool CheckJustLanded()
     {
         if (previousIsGround == false && isGrounded == true)
@@ -165,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
     }
+
     public void PlayFootStepSFX()
     {
         int footStepNumber;
@@ -193,16 +204,16 @@ public class PlayerMovement : MonoBehaviour
                 }
                 audioSource.clip = woodSFX[footStepNumber];
                 break;
-            case "Gravel":
+            case "Stone":
                 if (CheckJustLanded())
                 {
                     footStepNumber = 0;
                 }
                 else
                 {
-                    footStepNumber = Random.Range(0, gravelSFX.Length);
+                    footStepNumber = Random.Range(0, stoneSFX.Length);
                 }
-                audioSource.clip = gravelSFX[footStepNumber];
+                audioSource.clip = stoneSFX[footStepNumber];
                 break;
             case "Swamp":
                 if (CheckJustLanded())
@@ -220,5 +231,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         audioSource.Play();
+    }
+
+    public void AddToWolfWakeMeter()
+    {
+        if(wolfWakeGround != null)
+        {
+            if (onWolfWakeGround)
+            {
+                wolfWakeGround.AddToWolfWakeMeter();
+            }
+        }
+    }
+
+    public void WakeWolf()
+    {
+        if(wolfWakeGround != null)
+        {
+            if (onWolfWakeGround)
+            {
+                wolfWakeGround.WakeWolf();
+            }
+        }
     }
 }

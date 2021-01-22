@@ -5,9 +5,11 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    protected SpriteRenderer spriteRenderer;
-    protected PlayerMovement playerMovement;
-    protected LevelManager levelManager;
+    private SpriteRenderer spriteRenderer;
+    private PlayerMovement playerMovement;
+    private LevelManager levelManager;
+    private DeathController DeathController;
+    private Animator animator;
 
     public GameObject hurtAudio;
     public Color damageColor;
@@ -22,12 +24,8 @@ public class Health : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
         levelManager = FindObjectOfType<LevelManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        DeathController = FindObjectOfType<DeathController>();
+        animator = GetComponent<Animator>();
     }
 
     public void DamagePlayer()
@@ -44,10 +42,10 @@ public class Health : MonoBehaviour
         if(GlobalPlayerData.Health <= 0)
         {
             KillPlayer();
+            Invoke("ShowDeathScene", 1f);
         }
         else
         {
-            
             isInvunerable = true;
             Invoke("MakePlayerVulnerable", invincibilityTime);
             StartCoroutine("FlickerSprite");
@@ -58,13 +56,26 @@ public class Health : MonoBehaviour
     public void KillPlayer()
     {
         isDead = true;
-        levelManager.KillPlayer();
-        print("player is dead");
+        playerMovement.isDead = true;
+        animator.SetBool("isDead", true);
+    }
+
+    public void ShowDeathScene()
+    {
+        DeathController.ShowDeath();
+    }
+
+    public void InstantKillPlayer()
+    {
+        KillPlayer();
+        ShowDeathScene();
     }
 
     public void RevivePlayer()
     {
         isDead = false;
+        playerMovement.isDead = false;
+        animator.SetBool("isDead", false);
     }
 
     public void MakePlayerVulnerable()
