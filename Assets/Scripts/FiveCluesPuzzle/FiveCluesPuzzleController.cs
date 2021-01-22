@@ -15,20 +15,20 @@ public class PuzzleItemIcon
 public class FiveCluesPuzzleController : AbstractPuzzleController
 {
 
-    protected int foodIndex;
-    protected string wineButtonValue;
-    protected string meatButtonValue;
-    protected string riceButtonValue;
+    private int foodIndex;
+    private string wineButtonValue;
+    private string meatButtonValue;
+    private string riceButtonValue;
 
-    protected int unitIndex;
-    protected string tspButtonValue;
-    protected string tblspButtonValue;
-    protected string cupButtonValue;
+    private int unitIndex;
+    private string tspButtonValue;
+    private string tblspButtonValue;
+    private string cupButtonValue;
 
-    protected int quantityIndex;
-    protected string fifteenButtonValue;
-    protected string twentyButtonValue;
-    protected string fiveButtonValue;
+    private int quantityIndex;
+    private string fifteenButtonValue;
+    private string twentyButtonValue;
+    private string fiveButtonValue;
 
     [Header("Food Objects")]
     public PuzzleItemIcon[] foodItemIcons;
@@ -54,8 +54,11 @@ public class FiveCluesPuzzleController : AbstractPuzzleController
     public Image twentyButtonImage;
     public Image fiveButtonImage;
 
+    public AudioSource audioSource;
+
     void OnEnable()
     {
+        audioSource = GetComponent<AudioSource>();
         ResetPuzzle();
     }
 
@@ -72,6 +75,7 @@ public class FiveCluesPuzzleController : AbstractPuzzleController
 
     public void FoodPlayerInput(string buttonName)
     {
+        PlayButtonSwitchSound();
         switch (buttonName)
         {
             case "wineButton":
@@ -91,6 +95,7 @@ public class FiveCluesPuzzleController : AbstractPuzzleController
 
     public void UnitPlayerInput(string buttonName)
     {
+        PlayButtonSwitchSound();
         switch (buttonName)
         {
             case "tspButton":
@@ -110,6 +115,7 @@ public class FiveCluesPuzzleController : AbstractPuzzleController
 
     public void QuantityPlayerInput(string buttonName)
     {
+        PlayButtonSwitchSound();
         switch (buttonName)
         {
             case "fifteenButton":
@@ -796,5 +802,10 @@ public class FiveCluesPuzzleController : AbstractPuzzleController
         twentyButtonImage.sprite = quantityItemIcons[0].iconSprite;
         fiveButtonValue = quantityItemIcons[0].itemValue;
         fiveButtonImage.sprite = quantityItemIcons[0].iconSprite;
+    }
+
+    public void PlayButtonSwitchSound()
+    {
+        audioSource.Play();
     }
 }

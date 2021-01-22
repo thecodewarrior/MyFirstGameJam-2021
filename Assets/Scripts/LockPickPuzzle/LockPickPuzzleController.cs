@@ -40,6 +40,7 @@ public class LockPickPuzzleController : AbstractPuzzleController
     private void OnEnable()
     {
         currentPuzzle = 0;
+        puzzleNumberText.text = (currentPuzzle + 1).ToString();
         ConvertCurrentSolutionToArray();
         ResetCurrentPuzzle();
     }

@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class WolfController : MonoBehaviour
 {
-    protected WolfMovement wolfMovement;
-    protected float timeBetweenActivation;
-    protected GameObject destination;
-    protected DetectPlayer detectPlayer;
-    protected string previousMusicPlaying;
-    protected bool wolfIsActive;
-    protected bool isFadingMusic;
-    protected DetectPlayerForAction detectPlayerForAction;
-    protected bool actionTried;
-    protected AudioSource audioSource;
+    private WolfMovement wolfMovement;
+    private float timeBetweenActivation;
+    private GameObject destination;
+    private DetectPlayer detectPlayer;
+    private string previousMusicPlaying;
+    private bool wolfIsActive;
+    private bool isFadingMusic;
+    private DetectPlayerForAction detectPlayerForAction;
+    private bool actionTried;
+    private AudioSource audioSource;
+    public bool placeWolfAtEastPoint;
 
     public int actionNumber;
 
     public GameObject westPoint;
     public GameObject eastPoint;
     public GameObject wolf;
-    public bool placeWolfAtEastPoint;
+    
     public float timeBetweenActivationMin;
     public float timeBetweenActivationMax;
-    
+    public bool doNotReactivate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,9 @@ public class WolfController : MonoBehaviour
         detectPlayer = GetComponentInChildren<DetectPlayer>();
         detectPlayerForAction = GetComponentInChildren<DetectPlayerForAction>();
         audioSource = GetComponent<AudioSource>();
+
+        SetRandomizeWolfPlacement();
+
         if (placeWolfAtEastPoint)
         {
             StartWolfAtEast();
@@ -50,7 +55,11 @@ public class WolfController : MonoBehaviour
         if (CheckWolfReachedDestination())
         {
             StopWolf();
-            RestartWolfSequence();
+            if (!doNotReactivate)
+            {
+                RestartWolfSequence();
+            }
+            
         }
 
         if (detectPlayerForAction.playerCollided && !actionTried)
@@ -230,6 +239,17 @@ public class WolfController : MonoBehaviour
         audioSource.Play();
     }
 
+    public void SetRandomizeWolfPlacement()
+    {
+        int randomNumber = Random.Range(0, 2);
+        if(randomNumber == 0)
+        {
+            placeWolfAtEastPoint = false;
+        } else
+        {
+            placeWolfAtEastPoint = true;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

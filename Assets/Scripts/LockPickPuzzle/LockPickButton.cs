@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class LockPickButton : MonoBehaviour
 {
     protected LockPickPuzzleController lockPickPuzzleController;
+    public AudioSource audioSource;
+
     public Button toolButton;
     public int toolNumber;
     public Color normalColor;
@@ -13,9 +15,10 @@ public class LockPickButton : MonoBehaviour
     public Image buttonImage;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         lockPickPuzzleController = FindObjectOfType<LockPickPuzzleController>();
+
     }
 
     void Update()
@@ -34,5 +37,10 @@ public class LockPickButton : MonoBehaviour
     public void ChangeToHighlightedColor()
     {
         buttonImage.color = highlightedColor;    
+    }
+
+    public void PlayButtonSwitchSFX()
+    {
+        audioSource.Play();
     }
 }
