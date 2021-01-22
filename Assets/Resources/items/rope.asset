@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ItemName: Rope
   _ItemDescription: A spool of rope
-  ItemIcon: {fileID: 21300000, guid: fafaf3300040543ef8b68268ef8c551b, type: 3}
+  ItemIcon: {fileID: 21300000, guid: 933e4adcf7e3f42fd9bb2984da275e15, type: 3}
