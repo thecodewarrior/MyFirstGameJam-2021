@@ -59,4 +59,14 @@ public class HUDManager : MonoBehaviour
         controller.OnHide();
         _overlayContainer.Remove(controller.Root);
     }
+
+    public void Hide()
+    {
+        _overlayContainer.visible = false;
+    }
+    
+    public void Show()
+    {
+        _overlayContainer.visible = true;
+    }
 }

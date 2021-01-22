@@ -31,7 +31,7 @@ public class SceneSaveManager : MonoBehaviour
      * <summary>Persist data into the global save manager. Note, this does <i>not</i> save the file. To do that, call
      * the Save method on the GlobalSaveManager</summary>
      */
-    public void Persist()
+    public void Save()
     {
         var scene = gameObject.scene.name;
         foreach (var persistentObject in FindPersistentObjects())
@@ -42,6 +42,9 @@ public class SceneSaveManager : MonoBehaviour
                 GlobalSaveManager.Data.SetState(scene + "_" + id, persistentObject.GetSaveState());
             }
         }
+        
+        GlobalPlayerData.Persist();
+        GlobalSaveManager.WriteToFile();
     }
 
     /**

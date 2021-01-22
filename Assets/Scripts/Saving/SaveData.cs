@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using Interactions;
+using Inventory;
 
 [Serializable]
 public class SaveData
 {
     [XmlArray("States")]
     [XmlArrayItem(typeof(GlobalPlayerData.SaveState))]
+    [XmlArrayItem(typeof(BasicInventory.SaveState))]
+    [XmlArrayItem(typeof(InteractionManager.SaveState))]
     public List<AbstractSaveState> XmlStates;
 
 

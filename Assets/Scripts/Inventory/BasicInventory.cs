@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Inventory
@@ -23,7 +24,8 @@ namespace Inventory
             set
             {
                 if (item != value.Item)
-                    throw new ArgumentException($"Passed key ({item.name}) doesn't match the stack's item ({value.Item})");
+                    throw new ArgumentException(
+                        $"Passed key ({item.name}) doesn't match the stack's item ({value.Item})");
                 PutStack(value);
             }
         }
@@ -81,7 +83,7 @@ namespace Inventory
 
         public bool Contains(InventoryItem item) => GetStack(item).Count > 0;
 
-        public IInventory.ChangeListener OnChange { get; set; } = () => {};
+        public IInventory.ChangeListener OnChange { get; set; } = () => { };
 
         public void Clear()
         {
@@ -90,7 +92,7 @@ namespace Inventory
 
         private void Clean()
         {
-            _stacks.RemoveAll(stack => stack.Count <= 0);
+            _stacks.RemoveAll(stack => stack.Item == null || stack.Count <= 0);
         }
 
         private int IndexOf(InventoryItem item)
@@ -105,7 +107,7 @@ namespace Inventory
             if (!(state is SaveState _state))
                 return;
             _stacks.Clear();
-            _stacks.AddRange(_state.Stacks);
+            _stacks.AddRange(_state.Stacks.Select(InventoryItemStack.LoadSaveState));
             Clean();
         }
 
@@ -114,13 +116,16 @@ namespace Inventory
             Clean();
             var stacksCopy = new List<InventoryItemStack>();
             stacksCopy.AddRange(_stacks);
-            return new SaveState {Stacks = stacksCopy};
+            return new SaveState
+            {
+                Stacks = _stacks.Select(e => e.GetSaveState()).ToList()
+            };
         }
 
         [XmlType("Inventory")]
         public class SaveState : AbstractSaveState
         {
-            public List<InventoryItemStack> Stacks;
+            public List<InventoryItemStack.SaveState> Stacks;
         }
 
         #endregion

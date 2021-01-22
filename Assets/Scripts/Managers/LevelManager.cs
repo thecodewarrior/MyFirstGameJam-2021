@@ -63,11 +63,11 @@ public class LevelManager : MonoBehaviour
 
     public void FindStartPoint()
     {
-        if(GameManager.instance.startPointName != null)
+        if(GlobalPlayerData.SceneEntrance != null)
         {
             for (int i = 0; i < startPoints.Length; i++)
             {
-                if (GameManager.instance.startPointName == startPoints[i].startPointName)
+                if (GlobalPlayerData.SceneEntrance == startPoints[i].startPointName)
                 {
                     currentStartPoint = startPoints[i];
                 }

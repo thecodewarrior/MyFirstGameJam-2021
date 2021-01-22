@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -8,25 +9,36 @@ using UnityEngine.UIElements;
 public class MainMenuUIController : AbstractUIController
 {
     protected override string TemplateName => "main_menu";
-    
-    public AbstractUIController SaveListController;
-    public AbstractUIController NewSaveDialogController;
+
+    public string GameSceneName;
 
     protected override void Bind()
     {
+        GlobalSaveManager.CurrentSaveName = "main";
+        
         Root.Q<Button>("new_game").clicked += NewGameClicked;
-        Root.Q<Button>("load_game").clicked += LoadGameClicked;
+        var continueButton = Root.Q<Button>("continue");
+        continueButton.clicked += ContinueClicked;
         Root.Q<Button>("quit").clicked += QuitClicked;
+
+        continueButton.style.display = new StyleEnum<DisplayStyle>(
+            File.Exists(GlobalSaveManager.CurrentSaveFilePath()) ? DisplayStyle.Flex : DisplayStyle.None
+        );
     }
 
     private void NewGameClicked()
     {
-        Manager.OpenDialog(NewSaveDialogController);
+        File.Delete(GlobalSaveManager.CurrentSaveFilePath());
+        GlobalSaveManager.Reset();
+        GlobalPlayerData.Load();
+        SceneManager.LoadScene(GameSceneName);
     }
 
-    private void LoadGameClicked()
+    private void ContinueClicked()
     {
-        Manager.Push(SaveListController);
+        GlobalSaveManager.ReadFromFile();
+        GlobalPlayerData.Load();
+        SceneManager.LoadScene(GlobalPlayerData.SceneName);
     }
 
     private void QuitClicked()

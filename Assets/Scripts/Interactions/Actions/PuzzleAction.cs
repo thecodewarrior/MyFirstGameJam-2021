@@ -12,10 +12,12 @@ namespace Interactions.Actions
         public InteractionNode Success;
 
         private PlayerMovement _playerMovement;
+        private HUDManager _hudManager;
 
         private void Start()
         {
             _playerMovement = FindObjectOfType<PlayerMovement>();
+            _hudManager = FindObjectOfType<HUDManager>();
         }
 
         protected override void OnEnable()
@@ -32,6 +34,7 @@ namespace Interactions.Actions
         protected override void OnEnterNode()
         {
             _playerMovement.FreezePlayer();
+            _hudManager.Hide();
             Controller.Show();
             Controller.ResetPuzzle();
         }
@@ -39,6 +42,7 @@ namespace Interactions.Actions
         protected override void OnExitNode()
         {
             _playerMovement.UnFreezePlayer();
+            _hudManager.Show();
         }
 
         private void OnCompletion(bool wasSuccessful)

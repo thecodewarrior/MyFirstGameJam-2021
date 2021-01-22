@@ -43,15 +43,15 @@ namespace Interactions.Actions
 
         public void LoadScene()
         {
+            GlobalPlayerData.SceneName = SceneName;
+            GlobalPlayerData.SceneEntrance = StartPointName;
+            
             var saveManager = FindObjectOfType<SceneSaveManager>();
             if (saveManager != null)
             {
-                saveManager.Persist();
+                saveManager.Save();
             }
-            GlobalPlayerData.Persist();
-            GameManager.instance.startPointName = StartPointName;
-            print(GameManager.instance.startPointName);
-            SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene(GlobalPlayerData.SceneName);
         }
     }
 }

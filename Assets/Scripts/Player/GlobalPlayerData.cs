@@ -10,6 +10,8 @@ public static class GlobalPlayerData
     public static int Health { get; private set; }
     private static BasicInventory _inventory = new BasicInventory();
     public static IInventory Inventory => _inventory;
+    public static string SceneName;
+    public static string SceneEntrance;
 
     public static void DoDamage(int amount)
     {
@@ -22,6 +24,8 @@ public static class GlobalPlayerData
     {
         Health = MaxHealth;
         _inventory.Clear();
+        SceneName = null;
+        SceneEntrance = null;
     }
 
     public static void ResetHealth()
@@ -41,7 +45,9 @@ public static class GlobalPlayerData
         return new SaveState
         {
             Health = Health,
-            Inventory = _inventory.Stacks.Select(e => e).ToList() // copy the list
+            Inventory = _inventory.Stacks.Select(e => e.GetSaveState()).ToList(), // copy the list
+            SceneName = SceneName,
+            SceneEntrance = SceneEntrance,
         };
     }
 
@@ -49,10 +55,14 @@ public static class GlobalPlayerData
     {
         Health = state.Health;
         _inventory.Clear();
-        foreach (var stack in state.Inventory)
+        foreach (var stackState in state.Inventory)
         {
+            var stack = InventoryItemStack.LoadSaveState(stackState);
             _inventory.InsertItem(stack.Item, stack.Count);
         }
+
+        SceneName = state.SceneName;
+        SceneEntrance = state.SceneEntrance;
     }
 
     public static void Persist() => GlobalSaveManager.Data.SetState("global", GetSaveState());
@@ -74,7 +84,9 @@ public static class GlobalPlayerData
     public class SaveState : AbstractSaveState
     {
         public int Health;
-        public List<InventoryItemStack> Inventory;
+        public List<InventoryItemStack.SaveState> Inventory;
+        public string SceneName;
+        public string SceneEntrance;
     }
 
     #endregion

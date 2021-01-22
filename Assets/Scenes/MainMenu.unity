@@ -363,8 +363,6 @@ GameObject:
   - component: {fileID: 775728696}
   - component: {fileID: 775728695}
   - component: {fileID: 775728694}
-  - component: {fileID: 775728697}
-  - component: {fileID: 775728693}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -372,21 +370,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &775728693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775728692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00d1921ebc6f49a99bb7782c0e91fd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UITemplate: {fileID: 9197481963319205126, guid: b5c0befd8652a4320b2910a676ecae1b, type: 3}
-  ElementTemplate: {fileID: 9197481963319205126, guid: a9e61cbb276524a649da1717939b2253, type: 3}
-  GameSceneName: MainGame
 --- !u!114 &775728694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,9 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358738aca0205418a9dea81a26bdd063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UITemplate: {fileID: 9197481963319205126, guid: 195bed6e79fe742529fa7aff6cb5ec3b, type: 3}
-  SaveListController: {fileID: 775728693}
-  NewSaveDialogController: {fileID: 775728697}
+  GameSceneName: Scene_00
 --- !u!114 &775728695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,17 +414,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &775728697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775728692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa6d9d631d3466b98e0d552419ea3e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UITemplate: {fileID: 9197481963319205126, guid: 378a0d1b07fa64cb3a423f2c4eb07236, type: 3}
-  GameSceneName: MainGame

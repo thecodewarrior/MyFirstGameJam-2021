@@ -6,13 +6,13 @@ using UnityEngine.UIElements;
 public class UIManager : MonoBehaviour
 {
     public static bool HasInputFocus { get; private set; }
-    
+
     [SerializeField] private AbstractUIController ActiveController;
     private AbstractUIController ActiveDialogController;
-    
+
     [SerializeField] private UIDocument MainDocument;
     [SerializeField] private UIDocument DialogDocument;
-    
+
     private Stack<AbstractUIController> _controllerStack = new Stack<AbstractUIController>();
 
     private void Start()
@@ -51,8 +51,17 @@ public class UIManager : MonoBehaviour
         }
 
         ActiveController = controller;
+
+        if (ActiveController != null && ActiveController.PausesTime)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
-    
+
     public void OpenDialog(AbstractUIController controller)
     {
         if (ActiveDialogController != null)
@@ -75,5 +84,10 @@ public class UIManager : MonoBehaviour
     private void LateUpdate()
     {
         HasInputFocus = ActiveController != null || ActiveDialogController != null;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1;
     }
 }

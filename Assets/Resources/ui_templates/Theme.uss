@@ -9,3 +9,7 @@ Button {
     border-top-color: rgb(164, 164, 164);
     border-bottom-color: rgb(125, 125, 125);
 }
+
+#unity-text-input {
+    color: rgb(210, 210, 210);
+}

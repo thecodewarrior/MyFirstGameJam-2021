@@ -50,6 +50,7 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayMusic(string musicName)
 	{
+		print(musicName);
 		Sound s = Array.Find(sounds, item => item.name == musicName);
 		if (s == null)
 		{

@@ -6,6 +6,7 @@ public abstract class AbstractUIController : MonoBehaviour
 {
     public VisualTreeAsset UITemplate { get; private set; }
     public bool Active { get; private set; } = false;
+    public bool PausesTime { get; protected set; } = true;
 
     /**
      * The address to load the uxml template from

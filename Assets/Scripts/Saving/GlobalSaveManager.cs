@@ -19,9 +19,14 @@ public static class GlobalSaveManager
 
     public static string CurrentSaveFilePath()
     {
-        if (CurrentSaveName == null)
+        return GetSaveFilePath(CurrentSaveName);
+    }
+    
+    public static string GetSaveFilePath(string saveName)
+    {
+        if (saveName == null)
             return null;
-        var path = $"{SaveDirectory}/{CurrentSaveName}.xml";
+        var path = $"{SaveDirectory}/{saveName}.xml";
         return path;
     }
 
@@ -43,7 +48,18 @@ public static class GlobalSaveManager
             if (!File.Exists(path))
                 Data = new SaveData();
             else
-                Data = (SaveData) Serializer.Deserialize(new FileStream(path, FileMode.Open));
+            {
+                var stream = new FileStream(path, FileMode.Open);
+                try
+                {
+                    Data = (SaveData) Serializer.Deserialize(stream);
+                }
+                finally
+                {
+                    stream.Close();
+                }
+
+            }
         }
 
         Data.DidRead();

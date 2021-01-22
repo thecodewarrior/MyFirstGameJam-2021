@@ -21,8 +21,12 @@ public class PauseMenuUIController : AbstractUIController
     protected override void Bind()
     {
         Root.Q<Button>("resume").clicked += ResumeClicked;
-        Root.Q<Button>("save").clicked += SaveClicked;
         Root.Q<Button>("main_menu").clicked += MainMenuClicked;
+    }
+
+    protected override void Unbind()
+    {
+        base.Unbind();
     }
 
     private void ResumeClicked()
@@ -33,13 +37,6 @@ public class PauseMenuUIController : AbstractUIController
     private void MainMenuClicked()
     {
         SceneManager.LoadScene(MainMenuName);
-    }
-
-    private void SaveClicked()
-    {
-        _saveManager.Persist();
-        GlobalPlayerData.Persist();
-        GlobalSaveManager.WriteToFile();
     }
 
     private void Update()
