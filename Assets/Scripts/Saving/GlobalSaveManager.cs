@@ -68,6 +68,16 @@ public static class GlobalSaveManager
     public static void WriteToFile()
     {
         Data.WillWrite();
-        Serializer.Serialize(new FileStream(CurrentSaveFilePath(), FileMode.Create), Data);
+        if (CurrentSaveFilePath() == null)
+            return;
+        var stream = new FileStream(CurrentSaveFilePath(), FileMode.Create);
+        try
+        {
+            Serializer.Serialize(stream, Data);
+        }
+        finally
+        {
+            stream.Close();
+        }
     }
 }
