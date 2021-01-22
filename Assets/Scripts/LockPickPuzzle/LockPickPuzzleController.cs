@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class LockPickPuzzleController : MonoBehaviour
 {
 
-    public int currentPuzzle;
-    public int solutionIndex;
-    public int toolToMove;
-    public string currentAnswer;
+    protected int currentPuzzle;
+    protected int solutionIndex;
+    protected int toolToMove;
+    protected string currentAnswer;
+    protected AudioSource audioSource;
 
     public string[] solutions;
 
-    public string[] currentSolutionArray;
+    protected string[] currentSolutionArray;
 
     [Header("Objects")]
     public Button[] puzzleButtons;
@@ -30,18 +31,18 @@ public class LockPickPuzzleController : MonoBehaviour
     [Header("Settings")]
     public float timeBetweenMovements;
 
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnEnable()
     {
         currentPuzzle = 0;
         ConvertCurrentSolutionToArray();
         ResetCurrentPuzzle();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     public void HandlePlayerInput(int toolNumber)
     {
         StartCoroutine(InputNumber(toolNumber));
@@ -141,6 +142,7 @@ public class LockPickPuzzleController : MonoBehaviour
 
     public void MoveTool()
     {
+        PlayLockPickSFX();
         switch (toolToMove)
         {
             case 0:
@@ -282,5 +284,10 @@ public class LockPickPuzzleController : MonoBehaviour
         {
             lockPickButtons[i].ChangeToNormalColor();
         }
+    }
+
+    public void PlayLockPickSFX()
+    {
+        audioSource.Play();
     }
 }

@@ -14,21 +14,22 @@ public class PuzzleItemIcon
 public class FiveCluesPuzzleController : MonoBehaviour
 {
 
-    public int foodIndex;
-    public string wineButtonValue;
-    public string meatButtonValue;
-    public string riceButtonValue;
+    protected int foodIndex;
+    protected string wineButtonValue;
+    protected string meatButtonValue;
+    protected string riceButtonValue;
 
-    public int unitIndex;
-    public string tspButtonValue;
-    public string tblspButtonValue;
-    public string cupButtonValue;
+    protected int unitIndex;
+    protected string tspButtonValue;
+    protected string tblspButtonValue;
+    protected string cupButtonValue;
 
-    public int quantityIndex;
-    public string fifteenButtonValue;
-    public string twentyButtonValue;
-    public string fiveButtonValue;
+    protected int quantityIndex;
+    protected string fifteenButtonValue;
+    protected string twentyButtonValue;
+    protected string fiveButtonValue;
 
+    [Header("Food Objects")]
     public PuzzleItemIcon[] foodItemIcons;
     public Image wineButtonImage;
     public Text wineButtonText;
@@ -37,6 +38,7 @@ public class FiveCluesPuzzleController : MonoBehaviour
     public Image riceButtonImage;
     public Text riceButtonText;
 
+    [Header("Unit Objects")]
     public PuzzleItemIcon[] unitItemIcons;
     public Image tspButtonImage;
     public Text tspButtonText;
@@ -45,6 +47,7 @@ public class FiveCluesPuzzleController : MonoBehaviour
     public Image cupButtonImage;
     public Text cupButtonText;
 
+    [Header("Quantity Objects")]
     public PuzzleItemIcon[] quantityItemIcons;
     public Image fifteenButtonImage;
     public Image twentyButtonImage;

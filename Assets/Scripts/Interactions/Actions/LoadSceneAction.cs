@@ -14,9 +14,8 @@ namespace Interactions.Actions
         private bool _isFadingOut;
         private HUDManager _hud;
 
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
             _playerMovement = FindObjectOfType<PlayerMovement>();
             _hud = FindObjectOfType<HUDManager>();
         }

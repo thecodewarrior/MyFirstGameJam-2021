@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class InventoryListUIController : AbstractUIController
 {
     protected override string TemplateName => "inventory";
-    private VisualTreeAsset _elementTemplate;
+    private VisualTreeAsset _slotTemplate;
     
     private ListView _itemListView;
 
@@ -13,7 +13,7 @@ public class InventoryListUIController : AbstractUIController
     protected override void Start()
     {
         base.Start();
-        _elementTemplate = UITemplates.GetTemplate("item_stack");
+        _slotTemplate = UITemplates.GetTemplate("inventory_slot");
     }
 
     protected override void Bind()
@@ -21,7 +21,7 @@ public class InventoryListUIController : AbstractUIController
         _itemListView = Root.Q<ListView>("item_list");
         _itemListView.itemHeight = 50;
 
-        _itemListView.makeItem = () => _elementTemplate.Instantiate();
+        _itemListView.makeItem = () => _slotTemplate.Instantiate();
         _itemListView.bindItem = (element, i) => { BindingUtils.ItemStack.Bind(element, GlobalPlayerData.Inventory.Stacks[i]); };
         _itemListView.itemsSource = GlobalPlayerData.Inventory.Stacks;
     }

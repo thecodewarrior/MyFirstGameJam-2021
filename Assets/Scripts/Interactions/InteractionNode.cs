@@ -5,17 +5,10 @@ namespace Interactions
 {
     public abstract class InteractionNode : MonoBehaviour
     {
-        [Tooltip("Whether this is the active node. Purely for readout in the inspector")] [SerializeField]
-        private bool _isCurrent;
-
         /**
          * Whether this is the current node. If this is false, the node should do nothing.
          */
-        public bool IsCurrent
-        {
-            get => _isCurrent;
-            private set => _isCurrent = value;
-        }
+        public bool IsCurrent { get; private set; }
 
         [NonSerialized] public InteractionManager Manager;
 
@@ -68,11 +61,6 @@ namespace Interactions
             }
 
             _hasEnabled = true;
-        }
-
-        protected virtual void Start()
-        {
-            _isCurrent = false;
         }
 
         protected virtual void LateUpdate()

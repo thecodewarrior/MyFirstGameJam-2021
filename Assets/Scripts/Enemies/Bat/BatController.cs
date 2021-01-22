@@ -15,6 +15,7 @@ public class BatController : MonoBehaviour
     protected SpriteRenderer[] controlPointSpriteRenderers;
     protected Animator animator;
     protected float attackEndTime;
+    protected AudioSource audioSource;
 
     public GameObject route;
     public float timeBetweenAttacks;
@@ -28,6 +29,7 @@ public class BatController : MonoBehaviour
         bezierFollow = GetComponent<BezierFollow>();
         controlPointSpriteRenderers = route.GetComponentsInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         TurnOffControlPoints();
         FaceLeft();
     }
@@ -69,6 +71,7 @@ public class BatController : MonoBehaviour
         MakeEnemyFacePlayer();
         SetRoute();
         bezierFollow.coroutineAllowed = true;
+        audioSource.Play();
         Invoke("SetBatToDiving", timeBeforeDiveAnimation);
     }
 

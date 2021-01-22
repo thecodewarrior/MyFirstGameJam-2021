@@ -43,6 +43,7 @@ namespace Interactions
 
         [SerializeField] private List<Behaviour> _enabledBehaviors;
         [SerializeField] private List<Renderer> _visibleRenderers;
+        [SerializeField] private List<Transform> _savedTransforms;
 
         [Header("Serialization")] [SerializeField]
         private string _saveId;
@@ -66,15 +67,23 @@ namespace Interactions
                 ActiveObjects = _activeObjects.Select(e => e.activeSelf).ToList(),
                 EnabledBehaviors = _enabledBehaviors.Select(e => e.enabled).ToList(),
                 VisibleRenderers = _visibleRenderers.Select(e => e.enabled).ToList(),
+                SavedTransforms = _savedTransforms.Select(t =>
+                    new SavedTransform
+                    {
+                        LocalPosition = t.localPosition,
+                        LocalRotation = t.localRotation,
+                        LocalScale = t.localScale,
+                    }
+                ).ToList()
             };
         }
 
         public void LoadSaveState(AbstractSaveState saveState)
         {
-            var state = saveState as SaveState;
-            if (state == null)
-                state = InitialSaveState;
+            ApplySaveState(saveState as SaveState ?? InitialSaveState);
+        }
 
+        private void ApplySaveState(SaveState state) {
             if (CurrentNode != null)
                 CurrentNode.ExitNode();
 
@@ -94,11 +103,18 @@ namespace Interactions
             {
                 _visibleRenderers[i].enabled = state.VisibleRenderers[i];
             }
+            
+            for (var i = 0; i < Math.Min(_savedTransforms.Count, state.SavedTransforms.Count); i++)
+            {
+                _savedTransforms[i].localPosition = state.SavedTransforms[i].LocalPosition;
+                _savedTransforms[i].localRotation = state.SavedTransforms[i].LocalRotation;
+                _savedTransforms[i].localScale = state.SavedTransforms[i].LocalScale;
+            }
 
             if (_saveNodes.ContainsKey(state.LatestSavePoint))
             {
                 var next = _saveNodes[state.LatestSavePoint].Next;
-                if(next != null)
+                if (next != null)
                     next.EnterNode();
             }
             else
@@ -119,6 +135,7 @@ namespace Interactions
             public List<bool> ActiveObjects;
             public List<bool> EnabledBehaviors;
             public List<bool> VisibleRenderers;
+            public List<SavedTransform> SavedTransforms;
 
             public SaveState Copy()
             {
@@ -128,8 +145,17 @@ namespace Interactions
                     ActiveObjects = ActiveObjects,
                     EnabledBehaviors = EnabledBehaviors,
                     VisibleRenderers = VisibleRenderers,
+                    SavedTransforms = SavedTransforms,
                 };
             }
+        }
+
+        [XmlType("Transform")]
+        public struct SavedTransform
+        {
+            public Vector3 LocalPosition;
+            public Quaternion LocalRotation;
+            public Vector3 LocalScale;
         }
     }
 }

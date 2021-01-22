@@ -264,11 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99ff11cbadce4622a6a810b467cbbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAudioClip: {fileID: 0}
+  hurtAudio: {fileID: 1286805896039359739, guid: 055e9281c9eec4cd99bde97248d7f9b2, type: 3}
   damageColor: {r: 0.6981132, g: 0, b: 0, a: 1}
   invincibilityTime: 2
   filckerInterval: 0.1
   isInvunerable: 0
+  isDead: 0
 --- !u!82 &4765283898874983006
 AudioSource:
   m_ObjectHideFlags: 0

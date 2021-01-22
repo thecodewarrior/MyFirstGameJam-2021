@@ -54,10 +54,9 @@ public class SceneSaveManager : MonoBehaviour
         foreach (var persistentObject in FindPersistentObjects())
         {
             var id = persistentObject.SaveID;
-            if (!string.IsNullOrEmpty(id))
-            {
-                persistentObject.LoadSaveState(GlobalSaveManager.Data.GetState(scene + "_" + id));
-            }
+            persistentObject.LoadSaveState(
+                string.IsNullOrEmpty(id) ? null : GlobalSaveManager.Data.GetState(scene + "_" + id)
+            );
         }
     }
 }

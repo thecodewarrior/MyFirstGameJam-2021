@@ -93,7 +93,8 @@ public class DialogueUIController : AbstractUIController
 
         for (int i = 0; i <= sentence.Length; i++)
         {
-            _dialogueText.text = sentence.Substring(0, i);
+            // adding a § character in dialogue will add a delay
+            _dialogueText.text = sentence.Substring(0, i).Replace("§", ""); 
             yield return new WaitForSeconds(typeSpeed);
         }
 
