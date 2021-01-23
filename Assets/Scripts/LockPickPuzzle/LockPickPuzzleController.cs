@@ -28,6 +28,7 @@ public class LockPickPuzzleController : AbstractPuzzleController
     public Animator toolButton03Animator;
     public Text resultText;
     public Text puzzleNumberText;
+    public GameObject puzzleUnlockSFX;
 
     [Header("Settings")]
     public float timeBetweenMovements;
@@ -104,12 +105,13 @@ public class LockPickPuzzleController : AbstractPuzzleController
     public void UnlockDoor()
     {
         resultText.text = "Door Unlocked!";
-        OnCompletion(true);
+        Instantiate(puzzleUnlockSFX, transform.position, transform.rotation);
+        OnCompletion(Result.Success);
     }
 
     public void QuitPuzzle()
     {
-        OnCompletion(false);
+        OnCompletion(Result.Quit);
     }
 
     public void StartShowSolution()

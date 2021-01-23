@@ -768,6 +768,7 @@ MonoBehaviour:
   toolButton03Animator: {fileID: 312991243295242605}
   resultText: {fileID: 312991244422012060}
   puzzleNumberText: {fileID: 312991242982371236}
+  puzzleUnlockSFX: {fileID: 1286805896039359739, guid: 11d7c0f43f5074bdfbfac3fd0f5a6c3a, type: 3}
   timeBetweenMovements: 0.5
 --- !u!82 &312991243394579988
 AudioSource:

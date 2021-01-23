@@ -5,19 +5,22 @@ using UnityEngine;
 public class FrogController : MonoBehaviour
 {
 
-    protected Rigidbody2D m_Rigidbody2D;
-    protected Vector3 m_Velocity = Vector3.zero;
-    protected Animator animator;
-    protected DetectPlayer detectPlayer;
-    protected bool isJumping;
-    protected bool isFalling;
-    protected float horizontalMoveDirection;
-    protected float jumpStartTime;
-    protected bool isAttacking;
-    protected bool canAttack = true;
-    protected bool isFacingLeft;
-    protected PlayerMovement playerMovement;
-    protected Vector3 previousPosition;
+    private Rigidbody2D m_Rigidbody2D;
+    private Vector3 m_Velocity = Vector3.zero;
+    private Animator animator;
+    private DetectPlayer detectPlayer;
+    private bool isJumping;
+    private bool isFalling;
+    private float horizontalMoveDirection;
+    private float jumpStartTime;
+    private bool isAttacking;
+    private bool canAttack = true;
+    private bool isFacingLeft;
+    private PlayerMovement playerMovement;
+    private Health playerHealth;
+    private Vector3 previousPosition;
+    private AudioSource audioSource;
+    private bool previousGround;
 
     [SerializeField] private Vector2 m_JumpForce;                          // Amount of force added when the player jumps.
    
@@ -35,11 +38,17 @@ public class FrogController : MonoBehaviour
         animator = GetComponent<Animator>();
         detectPlayer = GetComponentInChildren<DetectPlayer>();
         playerMovement = FindObjectOfType<PlayerMovement>();
+        playerHealth = FindObjectOfType<Health>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerHealth.isDead)
+        {
+            return;
+        }
 
         if (isAttacking && canAttack)
         {
@@ -47,6 +56,7 @@ public class FrogController : MonoBehaviour
             StartCoroutine(StartAttackCoolDown());
             MakeEnemyFacePlayer();
             Jump();
+            PlayGrassSound();
         }
 
         SetAttackState();
@@ -71,7 +81,14 @@ public class FrogController : MonoBehaviour
         }
         isJumping = false;
         CheckIfFalling();
+
+        if (CheckForJustLanded())
+        {
+            PlayGrassSound();
+        }
+
         previousPosition = transform.position;
+        previousGround = Grounded;
     }
 
     public void CheckForGround()
@@ -89,6 +106,19 @@ public class FrogController : MonoBehaviour
                 Grounded = true;
             }
         }
+    }
+
+    public bool CheckForJustLanded()
+    {
+        if (isFalling)
+        {
+            if(Grounded != previousGround)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void CheckIfFalling()
@@ -165,5 +195,10 @@ public class FrogController : MonoBehaviour
     {
         isFacingLeft = false;
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    public void PlayGrassSound()
+    {
+        audioSource.Play();
     }
 }

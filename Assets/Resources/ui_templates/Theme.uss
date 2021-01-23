@@ -13,3 +13,11 @@ Button {
 #unity-text-input {
     color: rgb(210, 210, 210);
 }
+
+#resume:hover {
+    color: rgb(255, 0, 0);
+}
+
+#main_menu:hover {
+    color: rgb(255, 0, 0);
+}

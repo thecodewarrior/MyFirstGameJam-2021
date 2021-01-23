@@ -38,8 +38,15 @@ public class SaveData
 
     public void SetState(string id, AbstractSaveState state)
     {
-        state.Id = id;
-        _states[id] = state;
+        if (state == null)
+        {
+            _states.Remove(id);
+        }
+        else
+        {
+            state.Id = id;
+            _states[id] = state;
+        }
     }
 }
 

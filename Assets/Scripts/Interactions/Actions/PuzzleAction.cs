@@ -8,6 +8,7 @@ namespace Interactions.Actions
     {
         public AbstractPuzzleController Controller;
         
+        public InteractionNode Quit;
         public InteractionNode Fail;
         public InteractionNode Success;
 
@@ -35,6 +36,7 @@ namespace Interactions.Actions
         {
             _playerMovement.FreezePlayer();
             _hudManager.Hide();
+            UIManager.UnityUIHasInputFocus = true;
             Controller.Show();
             Controller.ResetPuzzle();
         }
@@ -43,12 +45,27 @@ namespace Interactions.Actions
         {
             _playerMovement.UnFreezePlayer();
             _hudManager.Show();
+            UIManager.UnityUIHasInputFocus = false;
         }
 
-        private void OnCompletion(bool wasSuccessful)
+        private void OnCompletion(AbstractPuzzleController.Result result)
         {
             Controller.Hide();
-            AdvanceTo(wasSuccessful ? Success : Fail);
+            switch (result)
+            {
+                case AbstractPuzzleController.Result.Success:
+                    AdvanceTo(Success);
+                    break;
+                case AbstractPuzzleController.Result.Fail:
+                    AdvanceTo(Fail);
+                    break;
+                case AbstractPuzzleController.Result.Quit:
+                    AdvanceTo(Quit);
+                    break;
+                default:
+                    AdvanceTo(Quit);
+                    break;
+            }
         }
     }
 }

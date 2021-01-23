@@ -28,6 +28,7 @@ public class MainMenuUIController : AbstractUIController
 
     private void NewGameClicked()
     {
+        GlobalSaveManager.CreateSaveDirectory();
         File.Delete(GlobalSaveManager.CurrentSaveFilePath());
         GlobalSaveManager.Reset();
         GlobalPlayerData.Load();
@@ -36,6 +37,7 @@ public class MainMenuUIController : AbstractUIController
 
     private void ContinueClicked()
     {
+        GlobalSaveManager.CreateSaveDirectory();
         GlobalSaveManager.ReadFromFile();
         GlobalPlayerData.Load();
         SceneManager.LoadScene(GlobalPlayerData.SceneName);

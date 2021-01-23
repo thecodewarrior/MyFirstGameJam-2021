@@ -72,13 +72,13 @@ public class BatController : MonoBehaviour
         SetRoute();
         bezierFollow.coroutineAllowed = true;
         audioSource.Play();
-        Invoke("SetBatToDiving", timeBeforeDiveAnimation);
+        //Invoke("SetBatToDiving", timeBeforeDiveAnimation);
     }
 
     public void StopAttack()
     {
         isAttacking = false;
-        SetBatToFlying();
+        //SetBatToFlying();
         StartCoroutine(StartAttackCoolDown());
     }
 

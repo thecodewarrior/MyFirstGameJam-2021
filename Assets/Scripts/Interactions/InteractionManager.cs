@@ -83,6 +83,8 @@ namespace Interactions
 
         public void LoadSaveState(AbstractSaveState saveState)
         {
+            if (!gameObject.activeSelf) 
+                return;
             ApplySaveState(saveState as SaveState ?? InitialSaveState);
         }
 
@@ -129,6 +131,8 @@ namespace Interactions
 
         public AbstractSaveState GetSaveState()
         {
+            if (!gameObject.activeSelf) 
+                return null;
             return LatestSaveState.Copy();
         }
 

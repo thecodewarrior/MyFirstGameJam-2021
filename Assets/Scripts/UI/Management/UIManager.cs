@@ -5,7 +5,9 @@ using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    public static bool HasInputFocus { get; private set; }
+    public static bool UIToolkitHasInputFocus { get; private set; }
+    public static bool UnityUIHasInputFocus { get; set; } = false;
+    public static bool HasInputFocus => UIToolkitHasInputFocus || UnityUIHasInputFocus;
 
     [SerializeField] private AbstractUIController ActiveController;
     private AbstractUIController ActiveDialogController;
@@ -83,7 +85,7 @@ public class UIManager : MonoBehaviour
     // run in late update so 
     private void LateUpdate()
     {
-        HasInputFocus = ActiveController != null || ActiveDialogController != null;
+        UIToolkitHasInputFocus = ActiveController != null || ActiveDialogController != null;
     }
 
     private void OnDisable()

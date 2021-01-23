@@ -763,16 +763,21 @@ public class FiveCluesPuzzleController : AbstractPuzzleController
                 && fifteenButtonValue == "fifteen" && twentyButtonValue == "twenty" && fiveButtonValue == "five")
             {
                 print("you win");
-                OnCompletion(true);
+                OnCompletion(Result.Success);
             }
             else
             {
                 print("wrong potion");
-                OnCompletion(false);
+                OnCompletion(Result.Fail);
             }
         }
     }
 
+    public void QuitPuzzle()
+    {
+        print("Do not quit yet!");
+        OnCompletion(Result.Quit);
+    }
 
     public override void ResetPuzzle()
     {

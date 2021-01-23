@@ -1,53 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GroundTypeCheck : MonoBehaviour
 {
+    [NonSerialized] public List<StepMaterial> StepMaterialStack = new List<StepMaterial>();
 
-    public string groundType { get; private set; }
-    public bool isOnWolfWakeGround { get; private set; }
-
-    public void OnTriggerEnter2D(Collider2D collision)
+    public StepMaterial Material
     {
-        
-        if(collision.gameObject.layer == 7)
+        get
         {
-            SetGroundType(collision.tag);
-        }
+            if (StepMaterialStack.Count == 0)
+                return null;
 
-        if(collision.gameObject.layer == 14)
-        {
-            isOnWolfWakeGround = true;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 14)
-        {
-            isOnWolfWakeGround = false;
-        }
-    }
-
-    public void SetGroundType(string groundTag)
-    {
-        switch (groundTag)
-        {
-            case "Grass":
-                groundType = "Grass";
-                break;
-            case "Stone":
-                groundType = "Stone";
-                break;
-            case "Swamp":
-                groundType = "Swamp";
-                break;
-            case "Wood":
-                groundType = "Wood";
-                break;
-            default:
-                break;
+            return StepMaterialStack.Last();
         }
     }
 }

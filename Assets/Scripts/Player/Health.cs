@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
         if(GlobalPlayerData.Health <= 0)
         {
             KillPlayer();
-            Invoke("ShowDeathScene", 1f);
+            Invoke("ShowDeathNoWolf", 1f);
         }
         else
         {
@@ -60,15 +60,22 @@ public class Health : MonoBehaviour
         animator.SetBool("isDead", true);
     }
 
-    public void ShowDeathScene()
+    public void ShowDeathNoWolf()
     {
-        DeathController.ShowDeath();
+        DeathController.ShowDeathAndReload(false);
+    }
+
+    public void ShowDeathWithWolf()
+    {
+        DeathController.ShowDeathAndReload(true);
     }
 
     public void InstantKillPlayer()
     {
+        if (isInvunerable)
+            return;
         KillPlayer();
-        ShowDeathScene();
+        ShowDeathWithWolf();
     }
 
     public void RevivePlayer()

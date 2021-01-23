@@ -45,13 +45,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 24300002, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
   sounds:
-  - name: demo_1
-    clip: {fileID: 8300000, guid: 8f5d3fa1b87d64ec6bc44685b5d0acc0, type: 3}
+  - name: death_music
+    clip: {fileID: 8300000, guid: e90641792885f41a79768bdaeef301b3, type: 3}
     volume: 0.2
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
-    loop: 1
+    loop: 0
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
   - name: scene00_music
@@ -101,6 +101,24 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: swamp_music
     clip: {fileID: 8300000, guid: a4f651e4c01a74f039559c05e9aa7fef, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
+  - name: puzzle_music
+    clip: {fileID: 8300000, guid: 51cd1edcfb65a4cc8886bd54c67eb352, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
+  - name: intro_music
+    clip: {fileID: 8300000, guid: b92781003a085414db4feb33dbddb13d, type: 3}
     volume: 0.2
     volumeVariance: 0
     pitch: 1

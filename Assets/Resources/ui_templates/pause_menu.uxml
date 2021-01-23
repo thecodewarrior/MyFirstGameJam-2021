@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="Theme.uss" />
-    <ui:VisualElement style="align-items: center; justify-content: center; flex-grow: 1; background-color: rgba(0, 0, 0, 0.45);">
-        <ui:VisualElement style="width: 300px;">
-            <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume" style="font-size: 30px; margin-bottom: 6px;" />
-            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main_menu" style="font-size: 30px;" />
+    <ui:VisualElement style="align-items: center; justify-content: flex-start; flex-grow: 1; background-color: rgba(0, 0, 0, 0.45);">
+        <ui:VisualElement style="width: 350px; margin-top: 307px;">
+            <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume" style="font-size: 125px; margin-bottom: 40px; color: rgb(210, 210, 210); -unity-font: url(&apos;/Assets/Font/NaomisHand-Regular.ttf&apos;); background-color: rgba(137, 137, 137, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main_menu" style="font-size: 125px; -unity-font: url(&apos;/Assets/Font/NaomisHand-Regular.ttf&apos;); background-color: rgba(137, 137, 137, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

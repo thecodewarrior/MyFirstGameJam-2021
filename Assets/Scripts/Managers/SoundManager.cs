@@ -48,9 +48,13 @@ public class SoundManager : MonoBehaviour
 		s.source.Play();
 	}
 
+    public void FadeAndPlayMusic(string musicName, float fadeTime)
+    {
+            SoundManager.instance.FadeOutSound(SoundManager.instance.currentMusicPlaying, 0.1f);
+    }
+    
 	public void PlayMusic(string musicName)
 	{
-		print(musicName);
 		Sound s = Array.Find(sounds, item => item.name == musicName);
 		if (s == null)
 		{

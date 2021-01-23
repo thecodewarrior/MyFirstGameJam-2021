@@ -200,25 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d7c91c2f6f3dd4a8eef1911c759dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGroundType: 
   isDead: 0
   runSpeed: 40
-  grassSFX:
-  - {fileID: 8300000, guid: c03f9b8336130417393f712c2807a739, type: 3}
-  - {fileID: 8300000, guid: d87998a6b652b4d108440221d8c08261, type: 3}
-  - {fileID: 8300000, guid: 4dfb33397b2dc44a4a35cee3405061df, type: 3}
-  - {fileID: 8300000, guid: 62e1243d2ce704018a3f9120f6b5ecce, type: 3}
-  woodSFX:
-  - {fileID: 8300000, guid: 524ae58472ec54e949a4916351274ea2, type: 3}
-  - {fileID: 8300000, guid: 62fb35a17e0084123887e80136af66a2, type: 3}
-  - {fileID: 8300000, guid: 8050a069a17db4642851a0398131fd23, type: 3}
-  - {fileID: 8300000, guid: 49225cb00dc724d288b48a33c5233db4, type: 3}
-  swampSFX:
-  - {fileID: 8300000, guid: e67a16cc19fef4a389471018602660f3, type: 3}
-  - {fileID: 8300000, guid: 752a758d68d2a4c0da0b03cf21eb14b5, type: 3}
-  - {fileID: 8300000, guid: df4d30c7f89844a658633a116226127b, type: 3}
-  - {fileID: 8300000, guid: f9fcd25d2e4ac40db958f8812aca4e52, type: 3}
-  stoneSFX: []
 --- !u!114 &6504062553134366893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +356,7 @@ GameObject:
   - component: {fileID: 6504062553862272305}
   - component: {fileID: 3113390885969166427}
   - component: {fileID: 6309660600715383267}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,6 +14,7 @@ public class WolfController : MonoBehaviour
     private DetectPlayerForAction detectPlayerForAction;
     private bool actionTried;
     private AudioSource audioSource;
+    private Health playerHealth;
     public bool placeWolfAtEastPoint;
 
     public int actionNumber;
@@ -25,16 +26,19 @@ public class WolfController : MonoBehaviour
     public float timeBetweenActivationMin;
     public float timeBetweenActivationMax;
     public bool doNotReactivate;
+    public bool alwaysGoForward;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerHealth = FindObjectOfType<Health>();
         wolfMovement = wolf.GetComponent<WolfMovement>();
         detectPlayer = GetComponentInChildren<DetectPlayer>();
         detectPlayerForAction = GetComponentInChildren<DetectPlayerForAction>();
         audioSource = GetComponent<AudioSource>();
 
-        SetRandomizeWolfPlacement();
+        if(!alwaysGoForward)
+            SetRandomizeWolfPlacement();
 
         if (placeWolfAtEastPoint)
         {
@@ -72,7 +76,7 @@ public class WolfController : MonoBehaviour
         // Used to play or stop wolf music when player is near.
         if (detectPlayer.playerNear)
         {
-            if(SoundManager.instance.currentMusicPlaying != "wolf_music")
+            if(SoundManager.instance.currentMusicPlaying != "wolf_music" && !playerHealth.isDead)
             {
                 isFadingMusic = false;
                 SoundManager.instance.StopFadeOut();
@@ -81,7 +85,7 @@ public class WolfController : MonoBehaviour
         }
         else
         {
-            if (SoundManager.instance.currentMusicPlaying == "wolf_music" && !isFadingMusic)
+            if (SoundManager.instance.currentMusicPlaying == "wolf_music" && !isFadingMusic && !playerHealth.isDead)
             {
                 isFadingMusic = true;
                 SoundManager.instance.FadeOutSound("wolf_music", 1f);
@@ -99,7 +103,7 @@ public class WolfController : MonoBehaviour
             //Do Nothing
             return;
         }
-        else if (actionNumber >= 2 && actionNumber < 6)
+        else if (actionNumber >= 2 && actionNumber < 6 || alwaysGoForward)
         {
             wolfMovement.ChangeStateToIdle();
             Invoke("ContinueWalking", 3f);

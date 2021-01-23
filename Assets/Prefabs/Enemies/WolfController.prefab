@@ -88,7 +88,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 8139267152306795607, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
   m_audioClip: {fileID: 8300000, guid: 649cde743066945899683da42cd22d95, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -639,13 +639,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bdfaa35136b4eb7993b9dd0c51ee21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeWolfAtEastPoint: 0
   actionNumber: 0
   westPoint: {fileID: 4029705482402159046}
   eastPoint: {fileID: 4029705482998779307}
   wolf: {fileID: 4029705481922691795}
-  placeWolfAtEastPoint: 0
   timeBetweenActivationMin: 10
   timeBetweenActivationMax: 5
+  doNotReactivate: 0
+  alwaysGoForward: 0
 --- !u!82 &6655689876367162319
 AudioSource:
   m_ObjectHideFlags: 0
