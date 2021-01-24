@@ -50,6 +50,7 @@ namespace Interactions
         private string _saveId;
 
         public string SaveID => _saveId;
+        public bool IsActive => isActiveAndEnabled;
 
         private SaveState InitialSaveState;
         private SaveState LatestSaveState;

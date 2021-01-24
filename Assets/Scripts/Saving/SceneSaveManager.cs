@@ -24,6 +24,8 @@ public class SceneSaveManager : MonoBehaviour
             persistentObjects.AddRange(root.GetComponentsInChildren<IPersistentObject>(true));
         }
 
+        persistentObjects.RemoveAll(e => !e.IsActive);
+
         return persistentObjects;
     }
 

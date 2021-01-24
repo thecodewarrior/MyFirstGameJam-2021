@@ -10,19 +10,19 @@ public class StepMaterial : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var typeCheck = other.GetComponent<GroundTypeCheck>();
-        if (typeCheck != null)
+        var playerMovement= other.GetComponent<PlayerMovement>();
+        if (playerMovement != null && !playerMovement.StepMaterialStack.Contains(this))
         {
-            typeCheck.StepMaterialStack.Add(this);
+            playerMovement.StepMaterialStack.Add(this);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        var typeCheck = other.GetComponent<GroundTypeCheck>();
-        if (typeCheck != null)
+        var playerMovement = other.GetComponent<PlayerMovement>();
+        if (playerMovement != null)
         {
-            typeCheck.StepMaterialStack.Remove(this);
+            playerMovement.StepMaterialStack.Remove(this);
         }
     }
 }

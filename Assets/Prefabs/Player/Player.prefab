@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 6504062553862272305}
   - component: {fileID: 3113390885969166427}
   - component: {fileID: 6309660600715383267}
+  - component: {fileID: 5091133962378987910}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -405,6 +406,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766839c42e95446e9a02a6d0827883a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &5091133962378987910
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6504062553862272304}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7362314802191066475
 GameObject:
   m_ObjectHideFlags: 0

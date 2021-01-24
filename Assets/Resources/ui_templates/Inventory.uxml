@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="Theme.uss" />
     <ui:VisualElement style="height: 100%; width: 100%; justify-content: flex-start; flex-direction: column; align-items: center; opacity: 1;">
-        <ui:VisualElement name="Inventory_Box" style="background-image: url(&apos;/Assets/Sprites/UI/inventory_background.png&apos;); width: 442px; height: 614px; padding-left: 45px; padding-right: 44px; padding-top: 138px; padding-bottom: 42px; margin-top: 83px;">
+        <ui:VisualElement name="Inventory_Box" style="background-image: url(&apos;/Assets/Sprites/UI/inventory_background.png&apos;); width: 442px; height: 724px; padding-left: 45px; padding-right: 44px; padding-top: 138px; padding-bottom: 42px; margin-top: 83px; -unity-slice-top: 153;">
             <ui:ListView focusable="false" name="item_list" selection-type="None" style="flex-grow: 1; color: rgb(210, 210, 210);" />
         </ui:VisualElement>
     </ui:VisualElement>

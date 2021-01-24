@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,13 @@ public class WolfWakeGround : MonoBehaviour
     public float numberToWake;
     public float numberToAdd;
     public float speedOfDecrease;
+    
+    private Health _playerHealth;
+
+    private void Start()
+    {
+        _playerHealth = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<Health>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -55,5 +63,7 @@ public class WolfWakeGround : MonoBehaviour
     {
         wolfIsAwake = true;
         wolfWakeMeterNumber = numberToWake;
+        if(!_playerHealth.isDead)
+            _playerHealth.InstantKillPlayer();
     }
 }

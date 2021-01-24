@@ -126,4 +126,31 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
     source: {fileID: 0}
+  - name: end_music_good
+    clip: {fileID: 8300000, guid: 3bbd08d6060c4423fa5344ed32756127, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
+  - name: end_music_bad
+    clip: {fileID: 8300000, guid: e7769bc0c35e6445bb54299392bef2dc, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
+  - name: finale_music
+    clip: {fileID: 8300000, guid: 8f5d3fa1b87d64ec6bc44685b5d0acc0, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 7072877723339742228, guid: e2c4fe2a7a7f64a1d8e6254c6a5bb7d2, type: 2}
+    source: {fileID: 0}
   currentMusicPlaying: 

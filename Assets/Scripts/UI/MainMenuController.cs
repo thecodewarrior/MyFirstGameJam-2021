@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
 
+    private bool isFadingIn;
+    private bool isFadingOut;
     private bool isShowingCredits;
     private bool canInterAct;
 
@@ -17,13 +19,17 @@ public class MainMenuController : MonoBehaviour
     public Button newGameButton;
     public Button continueButton;
 
+    public Image fadeImage;
+    public float fadeTime;
     // Start is called before the first frame update
     void Start()
     {
         GlobalSaveManager.CurrentSaveName = "main";
         SoundManager.instance.FadeOutSound(SoundManager.instance.currentMusicPlaying, 1f);
         Invoke("PlayMusic", 1.1f);
+        fadeImage.color = new Color(0f, 0f, 0f, 1f);
         ShowMainMenu();
+        FadeIn();
     }
 
     // Update is called once per frame
@@ -36,7 +42,7 @@ public class MainMenuController : MonoBehaviour
                 ShowMainMenu();
             }
         }
-        
+        PerformFade();
     }
 
     public void NewGameClicked(string GameSceneName)
@@ -112,5 +118,44 @@ public class MainMenuController : MonoBehaviour
     public void PlayMusic()
     {
         SoundManager.instance.PlayMusic("intro_music");
+    }
+
+    public void FadeIn()
+    {
+        isFadingIn = true;
+    }
+
+    public void FadeOut()
+    {
+        isFadingOut = true;
+    }
+
+    public void PerformFade()
+    {
+        if (isFadingIn)
+        {
+            Color fadeObjectColor = fadeImage.color;
+            float fadeAmount = fadeObjectColor.a - (Time.deltaTime / fadeTime);
+
+            fadeObjectColor = new Color(fadeObjectColor.r, fadeObjectColor.g, fadeObjectColor.b, fadeAmount);
+            fadeImage.color = fadeObjectColor;
+            if (fadeObjectColor.a <= 0f)
+            {
+                isFadingIn = false;
+            }
+        }
+
+        if (isFadingOut)
+        {
+            Color fadeObjectColor = fadeImage.color;
+            float fadeAmount = fadeImage.color.a + (Time.deltaTime / fadeTime);
+            fadeObjectColor = new Color(fadeObjectColor.r, fadeObjectColor.g, fadeObjectColor.b, fadeAmount);
+            fadeImage.color = fadeObjectColor;
+            if (fadeObjectColor.a >= 1f)
+            {
+                isFadingOut = false;
+                Invoke("LoadMainMenu", fadeTime);
+            }
+        }
     }
 }

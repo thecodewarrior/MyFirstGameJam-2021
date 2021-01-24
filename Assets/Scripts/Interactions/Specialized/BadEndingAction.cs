@@ -22,7 +22,7 @@ namespace Interactions.Specialized
 
         protected override void OnEnterNode()
         {
-            _deathController.ShowDeath(false);
+            _deathController.ShowDeath(true);
             Invoke(nameof(Respawn), RespawnTime);
         }
 

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Interactions.Specialized
 {
-    public class GoodEndingAction : AbstractAction
+    public class DeleteSaveAction : AbstractAction
     {
         public InteractionNode Next;
 
@@ -19,6 +19,7 @@ namespace Interactions.Specialized
             {
                 GlobalSaveManager.CreateSaveDirectory();
                 File.Delete(GlobalSaveManager.CurrentSaveFilePath());
+                GlobalSaveManager.CurrentSaveName = null;
             }
 
             AdvanceTo(Next);

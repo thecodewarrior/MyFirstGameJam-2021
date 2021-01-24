@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     protected bool isJumping = false;
     protected Animator animator;
     protected Vector3 previousPosition;
-    protected GroundTypeCheck groundTypeCheck;
     protected AudioSource audioSource;
     protected bool isGrounded;
     protected bool previousIsGround;
@@ -24,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
 
     protected WolfWakeGround wolfWakeGround;
-
+    
     float horizontalMove = 0f;
 
     public FacingDirection Facing
@@ -43,13 +42,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    [NonSerialized] public List<StepMaterial> StepMaterialStack = new List<StepMaterial>();
+    public StepMaterial StepMaterial
+    {
+        get
+        {
+            if (StepMaterialStack.Count == 0)
+                return null;
+
+            return StepMaterialStack.Last();
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController2D>();
         animator = GetComponent<Animator>();
-        groundTypeCheck = GetComponentInChildren<GroundTypeCheck>();
         audioSource = GetComponent<AudioSource>();
         wolfWakeGround = FindObjectOfType<WolfWakeGround>();
     }
@@ -177,14 +187,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayFootStepSFX()
     {
-        var stepMaterial = groundTypeCheck.Material;
-
-        if (stepMaterial == null || stepMaterial.StepSFX.Count == 0)
+        if (StepMaterial == null || StepMaterial.StepSFX.Count == 0)
             return; // edge case
 
         audioSource.clip = CheckJustLanded()
-            ? stepMaterial.LandSFX
-            : stepMaterial.StepSFX[Random.Range(0, stepMaterial.StepSFX.Count)];
+            ? StepMaterial.LandSFX
+            : StepMaterial.StepSFX[Random.Range(0, StepMaterial.StepSFX.Count)];
 
         audioSource.Play();
     }
@@ -193,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (wolfWakeGround != null)
         {
-            if (groundTypeCheck.Material != null && groundTypeCheck.Material.alertsWolf)
+            if (StepMaterial != null && StepMaterial.alertsWolf)
             {
                 wolfWakeGround.AddToWolfWakeMeter();
             }
@@ -204,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (wolfWakeGround != null)
         {
-            if (groundTypeCheck.Material != null && groundTypeCheck.Material.alertsWolf)
+            if (StepMaterial != null && StepMaterial.alertsWolf)
             {
                 wolfWakeGround.WakeWolf();
             }

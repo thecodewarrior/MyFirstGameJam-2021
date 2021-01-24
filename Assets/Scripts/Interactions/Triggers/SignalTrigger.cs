@@ -7,9 +7,28 @@ namespace Interactions.Triggers
     {
         public InteractionNode Next;
 
+        private bool _hasBeenTriggered;
+
+        protected override void OnEnterNode()
+        {
+            var shouldImmediatelyTrigger = _hasBeenTriggered;
+            _hasBeenTriggered = false;
+            if (shouldImmediatelyTrigger)
+            {
+                AdvanceTo(Next);
+            }
+        }
+
         public void Fire()
         {
-            AdvanceTo(Next);
+            if (IsCurrent)
+            {
+                AdvanceTo(Next);
+            }
+            else
+            {
+                _hasBeenTriggered = true;
+            }
         }
     }
 }
