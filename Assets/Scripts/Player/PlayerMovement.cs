@@ -22,10 +22,26 @@ public class PlayerMovement : MonoBehaviour
     public bool isFrozen { get; private set; } = false;
     public bool isFalling { get; private set; } = false;
     public float runSpeed = 40f;
-    
+
     protected WolfWakeGround wolfWakeGround;
 
     float horizontalMove = 0f;
+
+    public FacingDirection Facing
+    {
+        get => controller.FacingRight ? FacingDirection.Right : FacingDirection.Left;
+        set
+        {
+            if (value == FacingDirection.Right)
+            {
+                controller.MakePlayerFaceRight();
+            }
+            else
+            {
+                controller.MakePlayerFaceLeft();
+            }
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -194,4 +210,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+}
+
+public enum FacingDirection
+{
+    Left,
+    Right
 }

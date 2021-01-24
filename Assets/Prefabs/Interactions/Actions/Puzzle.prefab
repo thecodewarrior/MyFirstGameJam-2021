@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538257863820179846}
   - component: {fileID: 4848646505238085933}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
+  Quit: {fileID: 0}
   Fail: {fileID: 0}
   Success: {fileID: 0}

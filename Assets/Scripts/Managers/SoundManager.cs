@@ -48,9 +48,13 @@ public class SoundManager : MonoBehaviour
 		s.source.Play();
 	}
 
-    public void FadeAndPlayMusic(string musicName, float fadeTime)
+    public void FadeAndPlayMusic(string musicName, float fadeTime, Action completion = null)
     {
-            SoundManager.instance.FadeOutSound(SoundManager.instance.currentMusicPlaying, 0.1f);
+        FadeOutSound(currentMusicPlaying, fadeTime, () =>
+        {
+            PlayMusic(musicName);
+            completion?.Invoke();
+        });
     }
     
 	public void PlayMusic(string musicName)
@@ -65,12 +69,12 @@ public class SoundManager : MonoBehaviour
 		s.source.Play();
 	}
 
-	public void FadeOutSound(string name, float fadeTime)
+	public void FadeOutSound(string name, float fadeTime, Action completion = null)
 	{
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if (s != null)
 		{
-			StartCoroutine(FadeOut(s.source, fadeTime));
+			StartCoroutine(FadeOut(s.source, fadeTime, completion));
 		}
 	}
 
@@ -82,7 +86,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-	public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+	public IEnumerator FadeOut(AudioSource audioSource, float FadeTime, Action completion = null)
 	{
 		float startVolume = audioSource.volume;
 
@@ -104,7 +108,8 @@ public class SoundManager : MonoBehaviour
 
 		audioSource.Stop();
 		audioSource.volume = startVolume;
-	}
+        completion?.Invoke();
+    }
 
 	public void StopFadeOut()
     {

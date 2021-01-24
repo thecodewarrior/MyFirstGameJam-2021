@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Interactions.Actions;
 using UnityEngine;
@@ -74,9 +75,25 @@ public class DialogueUIController : AbstractUIController
 
         _dialogueText.text = "";
         SwitchSprite(_currentDialogueLine.Portrait);
+        SetPlayerFacing();
         StartCoroutine(TypeSentence(_currentDialogueLine.Text));
 
         _currentDialogueIndex++;
+    }
+
+    public void SetPlayerFacing()
+    {
+        switch (_currentDialogueLine.PlayerFacing)
+        {
+            case OptionalFacingDirection.Left:
+                playerMovement.Facing = FacingDirection.Left;
+                break;
+            case OptionalFacingDirection.Right:
+                playerMovement.Facing = FacingDirection.Right;
+                break;
+            default:
+                break;
+        }
     }
 
     public void EndDialogue()

@@ -6,6 +6,12 @@ public class DialogueLine
 {
     public Sprite Portrait;
 
-    [TextArea(3, 5)]
-    public string Text;
+    public OptionalFacingDirection PlayerFacing;
+
+    [TextArea(3, 5)] public string Text;
+}
+
+public enum OptionalFacingDirection
+{
+    None, Left, Right
 }

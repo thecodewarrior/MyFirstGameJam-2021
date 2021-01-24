@@ -11,6 +11,7 @@ TagManager:
   - Gravel
   - Wood
   - Stone
+  - Cat
   layers:
   - Default
   - TransparentFX

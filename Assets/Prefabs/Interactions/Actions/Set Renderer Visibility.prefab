@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1535439099985943593}
   - component: {fileID: 1535439099985943592}
-  m_Layer: 7
-  m_Name: Hide Bird
+  m_Layer: 0
+  m_Name: Set Renderer Visibility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540b0a2b5747422788fc56205b09d48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isCurrent: 0
   Show: []
   Hide:
   - {fileID: 0}

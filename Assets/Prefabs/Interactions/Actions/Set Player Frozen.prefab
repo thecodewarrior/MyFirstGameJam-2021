@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681303876809432131}
   - component: {fileID: 5928407686608342560}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Set Player Frozen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

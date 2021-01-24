@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2614889304623570350}
   - component: {fileID: 222818178946139481}
-  m_Layer: 7
-  m_Name: Pick Up Item
+  m_Layer: 0
+  m_Name: Pick Up Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546c982e775c49f593d55159be73243c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isCurrent: 0
   Items:
   - Item: {fileID: 0}
     Count: 0
